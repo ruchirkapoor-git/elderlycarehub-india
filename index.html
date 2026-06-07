@@ -1,271 +1,451 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elderly Care Hub India</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+:root{
+  --font-sans:'DM Sans',sans-serif;
+  --color-text-primary:#1a1a1a;
+  --color-text-secondary:#6b7280;
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f5f5f4;
+  --color-border-tertiary:#e5e7eb;
+  --color-border-secondary:#d1d5db;
+  --base-font-size:1.15; /* 15% bigger = 1.15 multiplier */
+}
 *{box-sizing:border-box;margin:0;padding:0}
-.wrap{padding:0 0 3rem;font-family:var(--font-sans)}
+body{font-family:var(--font-sans);font-size:calc(14px * var(--base-font-size));background:#fafaf9;color:var(--color-text-primary)}
+.page{width:80%;max-width:1100px;min-width:560px;margin:0 auto;padding:1.5rem 0 3rem}
 
-.hero{background:#085041;border-radius:20px;padding:2rem 2rem 1.8rem;margin-bottom:2rem;position:relative;overflow:hidden}
-.hero-bg{position:absolute;right:-20px;top:-20px;width:180px;height:180px;border-radius:50%;background:#0F6E56;opacity:0.5}
-.hero-bg2{position:absolute;right:40px;bottom:-40px;width:120px;height:120px;border-radius:50%;background:#1D9E75;opacity:0.3}
-.hero-label{font-size:11px;letter-spacing:0.12em;color:#5DCAA5;font-weight:500;margin-bottom:10px;text-transform:uppercase}
-.hero h1{font-size:26px;font-weight:500;color:#fff;line-height:1.2;margin-bottom:6px;position:relative}
-.hero p{font-size:13px;color:#9FE1CB;position:relative;margin-bottom:1.4rem}
-.hero-stats{display:flex;gap:1.5rem;position:relative}
-.hero-stat{text-align:left}
-.hero-stat-num{font-size:20px;font-weight:500;color:#fff}
-.hero-stat-lbl{font-size:11px;color:#5DCAA5}
+/* NAV TABS */
+.nav-tabs{display:flex;gap:4px;margin-bottom:1.8rem;background:var(--color-background-secondary);border-radius:12px;padding:4px;width:fit-content}
+.nav-tab{font-size:calc(13px * 1.15);font-weight:500;padding:8px 20px;border-radius:9px;border:none;background:transparent;color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.15s}
+.nav-tab.active{background:#fff;color:#085041;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+.nav-tab:hover:not(.active){color:var(--color-text-primary)}
 
-.helplines{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:2rem}
-.hl{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 14px;display:flex;align-items:center;gap:10px;transition:border-color 0.15s}
-.hl:hover{border-color:var(--color-border-secondary)}
-.hl-icon{width:34px;height:34px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.hl-icon.em{background:#E1F5EE;color:#085041}
-.hl-icon.he{background:#E6F1FB;color:#185FA5}
-.hl-icon.ag{background:#FAEEDA;color:#633806}
-.hl-icon.cr{background:#FCEBEB;color:#A32D2D}
-.hl-num{font-size:14px;font-weight:500;color:var(--color-text-primary)}
-.hl-lbl{font-size:11px;color:var(--color-text-secondary)}
+/* PAGE visibility */
+.view{display:none}.view.active{display:block}
 
-.controls{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.2rem;margin-bottom:1.5rem}
-.ctrl-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
-.ctrl-lbl{font-size:11px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px}
-.ctrl-row select{width:100%;font-size:14px}
-.search-wrap{display:flex;gap:8px}
-.search-wrap input{flex:1;font-size:14px}
-.ai-btn{font-size:13px;padding:0 16px;white-space:nowrap;background:#085041;color:#fff;border:none;border-radius:var(--border-radius-md);cursor:pointer;display:flex;align-items:center;gap:6px}
+/* TOP BAR */
+.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:1.8rem;flex-wrap:wrap}
+.top-selectors{display:flex;gap:10px;align-items:flex-end;flex-shrink:0;flex-wrap:wrap}
+.sel-grp{display:flex;flex-direction:column;gap:4px}
+.sel-grp label{font-size:calc(10px * 1.15);font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.08em}
+.sel-grp select{font-size:calc(13px * 1.15);min-width:130px;padding:6px 10px;border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
+
+/* HERO */
+.hero-strip{background:#085041;border-radius:16px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.hero-stats{display:flex;gap:2rem}
+.hs-num{font-size:calc(22px * 1.15);font-weight:500;color:#fff}
+.hs-lbl{font-size:calc(11px * 1.15);color:#5DCAA5}
+.hero-helplines{display:flex;gap:10px;flex-wrap:wrap}
+.hl{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:8px}
+.hl-ic{font-size:calc(14px * 1.15);color:#5DCAA5}
+.hl-num{font-size:calc(13px * 1.15);font-weight:500;color:#fff}
+.hl-lbl{font-size:calc(10px * 1.15);color:#9FE1CB}
+
+/* SEARCH */
+.search-pill-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap}
+.search-wrap{display:flex;flex:1;min-width:200px;gap:8px}
+.search-wrap input{flex:1;font-size:calc(13px * 1.15);padding:8px 12px;border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
+.ai-btn{font-size:calc(12px * 1.15);padding:0 14px;height:38px;white-space:nowrap;background:#085041;color:#fff;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px}
 .ai-btn:hover{background:#0F6E56}
-
-.pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:1.8rem}
-.pill{font-size:12px;padding:5px 14px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.15s}
-.pill:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary)}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:calc(12px * 1.15);padding:6px 13px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap}
+.pill:hover{background:var(--color-background-secondary)}
 .pill.on{background:#085041;color:#fff;border-color:#085041}
 
+/* SECTION HEADS */
 .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.sec-icon{width:28px;height:28px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;font-size:14px}
-.sec-icon.nat{background:#E6F1FB;color:#185FA5}
-.sec-icon.loc{background:#FAEEDA;color:#633806}
-.sec-title{font-size:15px;font-weight:500;color:var(--color-text-primary)}
-.sec-count{font-size:12px;padding:2px 10px;border-radius:10px;font-weight:500}
-.sec-count.nat{background:#E6F1FB;color:#0C447C}
-.sec-count.loc{background:#FAEEDA;color:#633806}
-.sec-sub{font-size:12px;color:var(--color-text-secondary);margin-left:2px}
+.sec-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:calc(13px * 1.15)}
+.si-loc{background:#FAEEDA;color:#633806}
+.si-nat{background:#E6F1FB;color:#185FA5}
+.si-free{background:#E1F5EE;color:#085041}
+.si-paid{background:#FAEEDA;color:#633806}
+.sec-title{font-size:calc(14px * 1.15);font-weight:500;color:var(--color-text-primary)}
+.cnt{font-size:calc(11px * 1.15);padding:2px 9px;border-radius:9px;font-weight:500}
+.cnt-loc{background:#FAEEDA;color:#633806}
+.cnt-nat{background:#E6F1FB;color:#0C447C}
+.cnt-free{background:#E1F5EE;color:#085041}
+.cnt-paid{background:#FAEEDA;color:#633806}
+.sec-sub{font-size:calc(12px * 1.15);color:var(--color-text-secondary)}
 
 .divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:2rem 0}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-bottom:0.5rem}
-
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.1rem 1.25rem;transition:border-color 0.15s}
+/* GRID & CARD */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-bottom:0.5rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s}
 .card:hover{border-color:var(--color-border-secondary)}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
-.card-icon{width:34px;height:34px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+
+/* LOGO area */
+.ci{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:calc(17px * 1.15);flex-shrink:0;border:0.5px solid var(--color-border-tertiary)}
+.ci img{width:44px;height:44px;object-fit:contain;border-radius:9px;background:#fff}
 .ci-gov{background:#E6F1FB;color:#185FA5}
 .ci-ngo{background:#E1F5EE;color:#085041}
 .ci-health{background:#FCEBEB;color:#A32D2D}
 .ci-legal{background:#FAEEDA;color:#633806}
 .ci-financial{background:#FAEEDA;color:#633806}
 .ci-social{background:#EEEDFE;color:#3C3489}
-.card-badge{font-size:10px;padding:3px 8px;border-radius:8px;font-weight:500}
+.ci-home{background:#E1F5EE;color:#085041}
+.cbadge{font-size:calc(10px * 1.15);padding:3px 8px;border-radius:7px;font-weight:500}
 .cb-nat{background:#E6F1FB;color:#0C447C}
 .cb-loc{background:#E1F5EE;color:#085041}
-.card-name{font-size:14px;font-weight:500;color:var(--color-text-primary);line-height:1.3;margin-bottom:4px}
-.card-cat{font-size:11px;color:var(--color-text-secondary);margin-bottom:8px}
-.card-desc{font-size:12px;color:var(--color-text-secondary);line-height:1.55;margin-bottom:10px}
-.card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
-.tag{font-size:10px;padding:2px 7px;border-radius:8px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
-.card-foot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px}
-.card-ph{font-size:11px;color:var(--color-text-secondary);display:flex;align-items:center;gap:4px}
-.card-ph b{color:var(--color-text-primary);font-weight:500}
-.card-link{font-size:11px;color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:3px}
+.cb-free{background:#E1F5EE;color:#085041}
+.cb-paid{background:#FAEEDA;color:#633806}
+.cn{font-size:calc(13px * 1.15);font-weight:500;color:var(--color-text-primary);line-height:1.3;margin-bottom:3px}
+.cc{font-size:calc(10px * 1.15);color:var(--color-text-secondary);margin-bottom:7px}
+.cd{font-size:calc(12px * 1.15);color:var(--color-text-secondary);line-height:1.5;margin-bottom:9px}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
+.tag{font-size:calc(10px * 1.15);padding:2px 7px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.cfoot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px}
+.cph{font-size:calc(11px * 1.15);color:var(--color-text-secondary);display:flex;align-items:center;gap:3px}
+.cph b{color:var(--color-text-primary);font-weight:500}
+.clink{font-size:calc(11px * 1.15);color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:3px}
+.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:calc(13px * 1.15);grid-column:1/-1}
+.tip{font-size:calc(12px * 1.15);color:var(--color-text-secondary);padding:10px 14px;background:var(--color-background-secondary);border-radius:8px;margin-bottom:12px;display:none;align-items:center;gap:7px}
 
-.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:13px;grid-column:1/-1}
-.city-tip{font-size:12px;color:var(--color-text-secondary);padding:10px 14px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);margin-bottom:1rem;display:none;align-items:center;gap:8px}
+/* OLD AGE HOMES page */
+.homes-topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.homes-city-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
+.city-chip{font-size:calc(12px * 1.15);padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;white-space:nowrap;transition:all 0.12s}
+.city-chip.on{background:#085041;color:#fff;border-color:#085041}
+.city-chip:hover:not(.on){background:var(--color-background-secondary)}
+.home-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s}
+.home-card:hover{border-color:var(--color-border-secondary)}
+.home-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.hci{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:#E1F5EE;color:#085041;border:0.5px solid var(--color-border-tertiary)}
+.hci img{width:44px;height:44px;object-fit:contain;border-radius:9px;background:#fff}
+.price-badge{font-size:calc(10px * 1.15);padding:3px 9px;border-radius:7px;font-weight:600}
+.pb-free{background:#E1F5EE;color:#085041}
+.pb-paid{background:#FEF3C7;color:#92400E}
+.hn{font-size:calc(13px * 1.15);font-weight:500;color:var(--color-text-primary);line-height:1.3;margin-bottom:2px}
+.hcity{font-size:calc(10px * 1.15);color:var(--color-text-secondary);margin-bottom:6px;display:flex;align-items:center;gap:3px}
+.hd{font-size:calc(12px * 1.15);color:var(--color-text-secondary);line-height:1.5;margin-bottom:8px}
+.hfeat{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
+.feat{font-size:calc(10px * 1.15);padding:2px 7px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.hfoot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px}
+.hph{font-size:calc(11px * 1.15);color:var(--color-text-secondary);display:flex;align-items:center;gap:3px}
+.hph b{color:var(--color-text-primary);font-weight:500}
+.hlink{font-size:calc(11px * 1.15);color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:3px}
+.price-note{font-size:calc(11px * 1.15);color:#92400E;font-weight:500}
 </style>
+</head>
+<body>
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Elderly Care Hub India</h2>
 
-<h2 class="sr-only">Elderly Care Hub India — national and local NGOs, government schemes, and helplines for senior citizens</h2>
+<div class="page">
 
-<div class="wrap">
-
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-bg2"></div>
-  <div class="hero-label">India &nbsp;·&nbsp; Senior citizen directory</div>
-  <h1>Elderly Care Hub</h1>
-  <p>NGOs · Government schemes · Helplines — all in one place</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">26</div><div class="hero-stat-lbl">Cities</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">40+</div><div class="hero-stat-lbl">Resources</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">60–100</div><div class="hero-stat-lbl">Age group</div></div>
+  <!-- NAV TABS -->
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="switchView('page1',this)"><i class="ti ti-building-community"></i> NGOs & Schemes</button>
+    <button class="nav-tab" onclick="switchView('page2',this)"><i class="ti ti-home-heart"></i> Old Age Homes</button>
   </div>
-</div>
 
-<div style="font-size:12px;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Emergency helplines</div>
-<div class="helplines">
-  <div class="hl"><div class="hl-icon em"><i class="ti ti-phone-call" aria-hidden="true"></i></div><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
-  <div class="hl"><div class="hl-icon ag"><i class="ti ti-heart" aria-hidden="true"></i></div><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">Agewell</div></div></div>
-  <div class="hl"><div class="hl-icon he"><i class="ti ti-stethoscope" aria-hidden="true"></i></div><div><div class="hl-num">1800-111-555</div><div class="hl-lbl">Health ministry</div></div></div>
-  <div class="hl"><div class="hl-icon cr"><i class="ti ti-alert-triangle" aria-hidden="true"></i></div><div><div class="hl-num">112</div><div class="hl-lbl">Emergency</div></div></div>
-</div>
+  <!-- ======== PAGE 1 ======== -->
+  <div id="page1" class="view active">
 
-<div class="controls">
-  <div class="ctrl-row">
-    <div><div class="ctrl-lbl">City</div>
-      <select id="citySelect" onchange="render()">
-        <option value="all">All cities</option>
-        <optgroup label="North India">
-          <option value="Delhi">Delhi / NCR</option>
-          <option value="Lucknow">Lucknow</option>
-          <option value="Jaipur">Jaipur</option>
-          <option value="Chandigarh">Chandigarh</option>
-          <option value="Agra">Agra</option>
-          <option value="Varanasi">Varanasi</option>
-        </optgroup>
-        <optgroup label="South India">
-          <option value="Bengaluru">Bengaluru</option>
-          <option value="Chennai">Chennai</option>
-          <option value="Hyderabad">Hyderabad</option>
-          <option value="Kochi">Kochi</option>
-          <option value="Mysuru">Mysuru</option>
-          <option value="Coimbatore">Coimbatore</option>
-          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-        </optgroup>
-        <optgroup label="West India">
-          <option value="Mumbai">Mumbai</option>
-          <option value="Pune">Pune</option>
-          <option value="Ahmedabad">Ahmedabad</option>
-          <option value="Surat">Surat</option>
-          <option value="Nagpur">Nagpur</option>
-          <option value="Goa">Goa</option>
-        </optgroup>
-        <optgroup label="East India">
-          <option value="Kolkata">Kolkata</option>
-          <option value="Bhubaneswar">Bhubaneswar</option>
-          <option value="Patna">Patna</option>
-          <option value="Guwahati">Guwahati</option>
-        </optgroup>
-        <optgroup label="Central India">
-          <option value="Bhopal">Bhopal</option>
-          <option value="Indore">Indore</option>
-          <option value="Raipur">Raipur</option>
-        </optgroup>
-      </select>
+    <div class="topbar">
+      <div class="top-selectors">
+        <div class="sel-grp">
+          <label>City</label>
+          <select id="citySelect" onchange="render()">
+            <option value="all">All cities</option>
+            <optgroup label="North India">
+              <option value="Delhi">Delhi / NCR</option>
+              <option value="Lucknow">Lucknow</option>
+              <option value="Jaipur">Jaipur</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Agra">Agra</option>
+              <option value="Varanasi">Varanasi</option>
+            </optgroup>
+            <optgroup label="South India">
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Hyderabad">Hyderabad</option>
+              <option value="Kochi">Kochi</option>
+              <option value="Mysuru">Mysuru</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            </optgroup>
+            <optgroup label="West India">
+              <option value="Mumbai">Mumbai</option>
+              <option value="Pune">Pune</option>
+              <option value="Ahmedabad">Ahmedabad</option>
+              <option value="Surat">Surat</option>
+              <option value="Nagpur">Nagpur</option>
+              <option value="Goa">Goa</option>
+            </optgroup>
+            <optgroup label="East India">
+              <option value="Kolkata">Kolkata</option>
+              <option value="Bhubaneswar">Bhubaneswar</option>
+              <option value="Patna">Patna</option>
+              <option value="Guwahati">Guwahati</option>
+            </optgroup>
+            <optgroup label="Central India">
+              <option value="Bhopal">Bhopal</option>
+              <option value="Indore">Indore</option>
+              <option value="Raipur">Raipur</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
     </div>
-    <div><div class="ctrl-lbl">Age group</div>
-      <select id="ageSelect">
-        <option value="all" selected>All (60–100)</option>
-        <option value="60-69">60–69</option>
-        <option value="70-79">70–79</option>
-        <option value="80-89">80–89</option>
-        <option value="90-100">90–100</option>
-      </select>
+
+    <div class="hero-strip">
+      <div class="hero-stats">
+        <div><div class="hs-num">26</div><div class="hs-lbl">Cities</div></div>
+        <div><div class="hs-num">40+</div><div class="hs-lbl">Resources</div></div>
+        <div><div class="hs-num">60–100</div><div class="hs-lbl">Age group</div></div>
+      </div>
+      <div class="hero-helplines">
+        <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
+        <div class="hl"><i class="ti ti-heart hl-ic"></i><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">Agewell</div></div></div>
+        <div class="hl"><i class="ti ti-stethoscope hl-ic"></i><div><div class="hl-num">1800-111-555</div><div class="hl-lbl">Health ministry</div></div></div>
+        <div class="hl"><i class="ti ti-alert-triangle hl-ic"></i><div><div class="hl-num">112</div><div class="hl-lbl">Emergency</div></div></div>
+      </div>
     </div>
-    <div><div class="ctrl-lbl">Country</div>
-      <select disabled style="opacity:0.5"><option>India</option></select>
+
+    <div class="search-pill-row">
+      <div class="search-wrap">
+        <input type="text" id="q" placeholder="Search — pension, dementia, legal aid..." oninput="render()">
+        <button class="ai-btn" onclick="aiQ()"><i class="ti ti-sparkles"></i> Ask AI ↗</button>
+      </div>
+      <div class="pills">
+        <button class="pill on" onclick="setCat('all',this)">All</button>
+        <button class="pill" onclick="setCat('gov',this)"><i class="ti ti-building-bank"></i> Govt</button>
+        <button class="pill" onclick="setCat('ngo',this)"><i class="ti ti-heart"></i> NGO</button>
+        <button class="pill" onclick="setCat('health',this)"><i class="ti ti-stethoscope"></i> Health</button>
+        <button class="pill" onclick="setCat('legal',this)"><i class="ti ti-scale"></i> Legal</button>
+        <button class="pill" onclick="setCat('financial',this)"><i class="ti ti-coin"></i> Financial</button>
+        <button class="pill" onclick="setCat('social',this)"><i class="ti ti-users"></i> Social</button>
+      </div>
     </div>
-  </div>
-  <div class="search-wrap">
-    <input type="text" id="q" placeholder="Search — pension, dementia, legal aid, housing..." oninput="render()">
-    <button class="ai-btn" onclick="aiQ()"><i class="ti ti-sparkles" aria-hidden="true"></i> Ask AI ↗</button>
-  </div>
-</div>
 
-<div class="pills">
-  <button class="pill on" onclick="setCat('all',this)">All</button>
-  <button class="pill" onclick="setCat('gov',this)"><i class="ti ti-building-bank" aria-hidden="true"></i> Government</button>
-  <button class="pill" onclick="setCat('ngo',this)"><i class="ti ti-heart" aria-hidden="true"></i> NGOs</button>
-  <button class="pill" onclick="setCat('health',this)"><i class="ti ti-stethoscope" aria-hidden="true"></i> Health</button>
-  <button class="pill" onclick="setCat('legal',this)"><i class="ti ti-scale" aria-hidden="true"></i> Legal</button>
-  <button class="pill" onclick="setCat('financial',this)"><i class="ti ti-coin" aria-hidden="true"></i> Financial</button>
-  <button class="pill" onclick="setCat('social',this)"><i class="ti ti-users" aria-hidden="true"></i> Social</button>
-</div>
+    <!-- LOCAL FIRST -->
+    <div class="sec-head">
+      <div class="sec-icon si-loc"><i class="ti ti-map-pin"></i></div>
+      <span class="sec-title">Local agencies</span>
+      <span class="cnt cnt-loc" id="lCnt">0</span>
+      <span class="sec-sub" id="cityLbl"></span>
+    </div>
+    <div class="tip" id="tip"><i class="ti ti-info-circle"></i><span id="tipTxt"></span></div>
+    <div class="grid" id="locGrid"></div>
 
-<div class="sec-head">
-  <div class="sec-icon nat"><i class="ti ti-globe" aria-hidden="true"></i></div>
-  <span class="sec-title">National</span>
-  <span class="sec-count nat" id="nCnt">0</span>
-</div>
-<div class="grid" id="natGrid"></div>
+    <div class="divider"></div>
 
-<div class="divider"></div>
+    <!-- NATIONAL SECOND -->
+    <div class="sec-head">
+      <div class="sec-icon si-nat"><i class="ti ti-globe"></i></div>
+      <span class="sec-title">National agencies</span>
+      <span class="cnt cnt-nat" id="nCnt">0</span>
+    </div>
+    <div class="grid" id="natGrid"></div>
 
-<div class="sec-head">
-  <div class="sec-icon loc"><i class="ti ti-map-pin" aria-hidden="true"></i></div>
-  <span class="sec-title">Local</span>
-  <span class="sec-count loc" id="lCnt">0</span>
-  <span class="sec-sub" id="cityLbl"></span>
-</div>
-<div class="city-tip" id="tip"><i class="ti ti-info-circle" aria-hidden="true"></i><span id="tipTxt"></span></div>
-<div class="grid" id="locGrid"></div>
+  </div><!-- /page1 -->
 
-</div>
+  <!-- ======== PAGE 2: OLD AGE HOMES ======== -->
+  <div id="page2" class="view">
+
+    <div class="hero-strip" style="margin-bottom:1.5rem">
+      <div class="hero-stats">
+        <div><div class="hs-num">50+</div><div class="hs-lbl">Old Age Homes</div></div>
+        <div><div class="hs-num">14</div><div class="hs-lbl">Cities</div></div>
+        <div><div class="hs-num">Free & Paid</div><div class="hs-lbl">Categories</div></div>
+      </div>
+      <div class="hero-helplines">
+        <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
+        <div class="hl"><i class="ti ti-home-heart hl-ic"></i><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">HelpAge India</div></div></div>
+      </div>
+    </div>
+
+    <div class="homes-topbar">
+      <div class="sel-grp">
+        <label>Filter by city</label>
+        <div class="homes-city-row" id="homeCityChips" style="margin-bottom:0"></div>
+      </div>
+      <div class="search-wrap" style="max-width:300px">
+        <input type="text" id="hq" placeholder="Search homes..." oninput="renderHomes()">
+      </div>
+    </div>
+
+    <!-- FREE HOMES -->
+    <div class="sec-head" style="margin-top:0.5rem">
+      <div class="sec-icon si-free"><i class="ti ti-gift"></i></div>
+      <span class="sec-title">Free / Subsidised Homes</span>
+      <span class="cnt cnt-free" id="freeCnt">0</span>
+      <span class="sec-sub">Government & NGO-run, no-cost or minimal charge</span>
+    </div>
+    <div class="grid" id="freeGrid"></div>
+
+    <div class="divider"></div>
+
+    <!-- PAID HOMES -->
+    <div class="sec-head">
+      <div class="sec-icon si-paid"><i class="ti ti-credit-card"></i></div>
+      <span class="sec-title">Paid Homes</span>
+      <span class="cnt cnt-paid" id="paidCnt">0</span>
+      <span class="sec-sub">Private / premium senior living facilities</span>
+    </div>
+    <div class="grid" id="paidGrid"></div>
+
+  </div><!-- /page2 -->
+
+</div><!-- /page -->
 
 <script>
+/* -------- LOGO MAP -------- */
+const LOGOS = {
+  'Ministry of Social Justice & Empowerment':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'National Programme for Health Care of Elderly':'https://nhm.gov.in/images/nhm-logo.png',
+  'HelpAge India':'https://www.helpageindia.org/wp-content/uploads/2021/04/helpage-india-logo.png',
+  'Agewell Foundation':'https://agewellfoundation.org/wp-content/uploads/2020/03/Logo.png',
+  'Senior Citizens Welfare Fund':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'PM Vaya Vandana Yojana (PMVVY)':'https://www.licindia.in/Resources/img/liclogo.png',
+  'NALSA — Senior Citizen Legal Cell':'https://nalsa.gov.in/sites/default/files/nalsa_logo.png',
+  "ARDSI — Alzheimer's & Related Disorders Society":'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
+  'Rashtriya Vayoshri Yojana':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'Maintenance & Welfare of Parents Act':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'Karnataka Dept. of Social Security':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'Nightingales Medical Trust':'https://nightingalestrust.net/wp-content/uploads/2020/09/NMT-Logo-1.png',
+  'Seva Sadan':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
+  'Dignity Foundation':'https://dignityfoundation.com/wp-content/uploads/2021/07/logo.png',
+  'Kerala Social Security Mission':'https://socialsecuritymission.gov.in/images/logo.png',
+  'ARDSI Kerala Chapter':'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
+};
+
+/* -------- PAGE 1 DATA -------- */
 const R=[
   {n:'Ministry of Social Justice & Empowerment',s:'national',c:['gov','financial'],d:'Welfare schemes for seniors including IGNOAPS pension, maintenance tribunals, and policy.',p:'011-23381366',w:'https://socialjustice.gov.in',t:['Pension','Policy','National']},
-  {n:'National Programme for Health Care of Elderly',s:'national',c:['gov','health'],d:'Dedicated geriatric OPDs, free medicines, and healthcare at district levels across India.',p:'1800-111-555',w:'https://nhm.gov.in',t:['Healthcare','Free','National']},
+  {n:'National Programme for Health Care of Elderly',s:'national',c:['gov','health'],d:'Geriatric OPDs, free medicines, and dedicated healthcare at district levels across India.',p:'1800-111-555',w:'https://nhm.gov.in',t:['Healthcare','Free','National']},
   {n:'HelpAge India',s:'national',c:['ngo','health','social'],d:'Mobile healthcare units, elder abuse helpline, and livelihood support for disadvantaged seniors.',p:'1800-180-1253',w:'https://helpageindia.org',t:['NGO','Healthcare','Abuse']},
   {n:'Agewell Foundation',s:'national',c:['ngo','social','legal'],d:'National elderly rights advocacy and helpline network across India.',p:'14567',w:'https://agewellfoundation.org',t:['Rights','Helpline','National']},
-  {n:'Senior Citizens Welfare Fund',s:'national',c:['gov','financial'],d:'Government fund channelling grants to NGOs for senior welfare via Ministry of Finance.',p:'011-23092868',w:'https://dea.gov.in',t:['Financial Aid','Fund']},
-  {n:'PM Vaya Vandana Yojana (PMVVY)',s:'national',c:['gov','financial'],d:'LIC pension scheme for 60+ offering guaranteed monthly pension and assured returns.',p:'1800-227-717',w:'https://licindia.in',t:['Pension','LIC','60+']},
+  {n:'Senior Citizens Welfare Fund',s:'national',c:['gov','financial'],d:'Government fund channelling grants for senior welfare via Ministry of Finance.',p:'011-23092868',w:'https://dea.gov.in',t:['Financial Aid','Fund']},
+  {n:'PM Vaya Vandana Yojana (PMVVY)',s:'national',c:['gov','financial'],d:'LIC pension scheme for 60+ with guaranteed monthly pension and assured returns.',p:'1800-227-717',w:'https://licindia.in',t:['Pension','LIC','60+']},
   {n:'NALSA — Senior Citizen Legal Cell',s:'national',c:['legal','gov'],d:'Free legal aid, Lok Adalats, and maintenance case resolution for senior citizens.',p:'15100',w:'https://nalsa.gov.in',t:['Free Legal Aid','Maintenance']},
-  {n:'ARDSI — Alzheimer\'s & Related Disorders Society',s:'national',c:['ngo','health'],d:'Dementia awareness, research, and caregiver support through a national chapter network.',p:'0484-2336479',w:'https://ardsi.org',t:['Dementia','Caregivers']},
+  {n:"ARDSI — Alzheimer's & Related Disorders Society",s:'national',c:['ngo','health'],d:'Dementia awareness, research, and caregiver support through a national chapter network.',p:'0484-2336479',w:'https://ardsi.org',t:['Dementia','Caregivers']},
   {n:'Rashtriya Vayoshri Yojana',s:'national',c:['gov','health'],d:'Free assistive devices — wheelchairs, hearing aids, spectacles — for BPL senior citizens.',p:'1800-180-1253',w:'https://socialjustice.gov.in',t:['Assistive Devices','BPL','Free']},
   {n:'Maintenance & Welfare of Parents Act',s:'national',c:['legal','gov'],d:'Legal framework for senior maintenance. Tribunals in every district handle complaints.',p:'14567',w:'https://socialjustice.gov.in',t:['Legal','Rights','Tribunal']},
-
   {n:'Delhi Social Welfare Dept.',s:'local',city:'Delhi',c:['gov','social','financial'],d:'Old age pension, senior citizen ID cards, and welfare scheme enrolment for Delhi residents.',p:'011-23392900',w:'https://socialjustice.delhi.gov.in',t:['Delhi','Pension']},
   {n:'Samvedna Senior Care',s:'local',city:'Delhi',c:['ngo','health','social'],d:'Mental health counselling, dementia care, and social engagement for Delhi NCR elderly.',p:'0124-4229659',w:'https://samvednacare.com',t:['Delhi','Dementia','Mental Health']},
-  {n:'Karnataka Dept. of Social Security',s:'local',city:'Bengaluru',c:['gov','financial','social'],d:'Sandhya Suraksha Yojana pension and senior citizen welfare for Karnataka residents.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',t:['Bengaluru','Pension','Karnataka']},
+  {n:'Karnataka Dept. of Social Security',s:'local',city:'Bengaluru',c:['gov','financial','social'],d:'Sandhya Suraksha Yojana pension and senior citizen welfare for Karnataka residents.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',t:['Bengaluru','Pension']},
   {n:'Nightingales Medical Trust',s:'local',city:'Bengaluru',c:['ngo','health'],d:'Dementia care, memory clinics, and caregiver training in Bengaluru.',p:'080-25492411',w:'https://nightingalestrust.net',t:['Bengaluru','Dementia']},
   {n:'Seva Sadan',s:'local',city:'Bengaluru',c:['ngo','social'],d:'Old age homes, day care centres, and community outreach for destitute elderly in Bengaluru.',p:'080-22203037',w:'https://sevasadan.org',t:['Bengaluru','Old Age Home']},
   {n:'Dignity Foundation',s:'local',city:'Mumbai',c:['ngo','social','health'],d:'Recreation centres, health camps, counselling, and vocational training for Mumbai seniors.',p:'022-23630869',w:'https://dignityfoundation.com',t:['Mumbai','Recreation']},
-  {n:'Maharashtra Social Welfare Dept.',s:'local',city:'Mumbai',c:['gov','financial'],d:'Shravanbal Seva Rajya Yojana pension and welfare for Maharashtra senior citizens.',p:'022-22025251',w:'https://sjsa.maharashtra.gov.in',t:['Mumbai','Pension','Maharashtra']},
-  {n:'Tamil Nadu Dept. of Social Defence',s:'local',city:'Chennai',c:['gov','financial','social'],d:'CM\'s Uzhavar Pension Scheme and government-run old age homes across Tamil Nadu.',p:'044-24357432',w:'https://socialjustice.tn.gov.in',t:['Chennai','Pension','TN']},
-  {n:'Chennai Aged Persons\' Welfare Assoc.',s:'local',city:'Chennai',c:['ngo','social'],d:'Day-care centres, home visits, and awareness on government welfare schemes in Chennai.',p:'044-24612345',w:'https://capwa.org',t:['Chennai','Day Care']},
+  {n:'Maharashtra Social Welfare Dept.',s:'local',city:'Mumbai',c:['gov','financial'],d:'Shravanbal Seva Rajya Yojana pension and welfare for Maharashtra senior citizens.',p:'022-22025251',w:'https://sjsa.maharashtra.gov.in',t:['Mumbai','Pension']},
+  {n:'Tamil Nadu Dept. of Social Defence',s:'local',city:'Chennai',c:['gov','financial','social'],d:"CM's Uzhavar Pension Scheme and government-run old age homes across Tamil Nadu.",p:'044-24357432',w:'https://socialjustice.tn.gov.in',t:['Chennai','Pension']},
+  {n:"Chennai Aged Persons' Welfare Assoc.",s:'local',city:'Chennai',c:['ngo','social'],d:'Day-care centres, home visits, and awareness on government welfare schemes in Chennai.',p:'044-24612345',w:'https://capwa.org',t:['Chennai','Day Care']},
   {n:'Hyderabad Senior Citizens Welfare Assoc.',s:'local',city:'Hyderabad',c:['ngo','social','legal'],d:'Legal awareness, social support, and recreation for seniors across Hyderabad district.',p:'040-23226284',w:'https://hyderabadseniors.org',t:['Hyderabad','Legal']},
-  {n:'Telangana Dept. — Aasara Pension',s:'local',city:'Hyderabad',c:['gov','financial'],d:'Aasara Pension Scheme for elderly in Telangana with direct benefit transfers.',p:'040-23390228',w:'https://wdcw.telangana.gov.in',t:['Hyderabad','Pension','Aasara']},
+  {n:'Telangana Dept. — Aasara Pension',s:'local',city:'Hyderabad',c:['gov','financial'],d:'Aasara Pension Scheme for Telangana elderly with direct benefit transfers.',p:'040-23390228',w:'https://wdcw.telangana.gov.in',t:['Hyderabad','Pension']},
   {n:'Pranam NGO',s:'local',city:'Kolkata',c:['ngo','social','health'],d:'Shelter, healthcare, and rehabilitation for abandoned and destitute elderly in Kolkata.',p:'033-24190550',w:'https://pranam.org.in',t:['Kolkata','Shelter']},
   {n:'West Bengal Social Welfare Dept.',s:'local',city:'Kolkata',c:['gov','financial'],d:'Old age pension and home care welfare schemes for West Bengal senior citizens.',p:'033-22145550',w:'https://wbsocialwelfare.gov.in',t:['Kolkata','Pension']},
   {n:'Silver Innings Foundation',s:'local',city:'Pune',c:['ngo','social'],d:'Connects Pune seniors to volunteering, social activities, and wellness programmes.',p:'020-65101435',w:'https://silverinnings.com',t:['Pune','Wellness']},
+  {n:'Pune Senior Citizens Association',s:'local',city:'Pune',c:['ngo','legal','social'],d:'Legal guidance on maintenance, pension, and property rights for Pune senior citizens.',p:'020-25672345',w:'https://puneseniors.org',t:['Pune','Legal']},
   {n:'Gujarat Social Welfare — Senior Cell',s:'local',city:'Ahmedabad',c:['gov','financial'],d:'Vayoshri Yojana and old age pension for Gujarat senior citizens, district-wise.',p:'079-23251601',w:'https://sje.gujarat.gov.in',t:['Ahmedabad','Pension']},
-  {n:'Kerala Social Security Mission',s:'local',city:'Kochi',c:['gov','health','social'],d:'Palliative care and home visits for homebound elderly through Kerala\'s panchayat network.',p:'0471-2317030',w:'https://socialsecuritymission.gov.in',t:['Kochi','Palliative Care']},
+  {n:'Kerala Social Security Mission',s:'local',city:'Kochi',c:['gov','health','social'],d:"Palliative care and home visits for homebound elderly through Kerala's panchayat network.",p:'0471-2317030',w:'https://socialsecuritymission.gov.in',t:['Kochi','Palliative Care']},
   {n:'ARDSI Kerala Chapter',s:'local',city:'Kochi',c:['ngo','health'],d:'Memory clinics, day care, and caregiver support for dementia patients in Kochi.',p:'0484-2336479',w:'https://ardsi.org',t:['Kochi','Dementia']},
-  {n:'UP Dept. of Social Welfare',s:'local',city:'Lucknow',c:['gov','financial'],d:'Old age pension and senior welfare schemes for Uttar Pradesh residents.',p:'0522-2236765',w:'https://swd.up.gov.in',t:['Lucknow','UP','Pension']},
+  {n:'Thiruvananthapuram Senior Citizens Forum',s:'local',city:'Thiruvananthapuram',c:['ngo','social'],d:'Peer support, health awareness, and recreational activities for Trivandrum seniors.',p:'0471-2328456',w:'https://tscforum.org',t:['Trivandrum','Social']},
+  {n:'Coimbatore Senior Citizens Forum',s:'local',city:'Coimbatore',c:['ngo','social'],d:'Health camps, legal awareness, and social activities for Coimbatore seniors.',p:'0422-2391234',w:'https://cbescf.org',t:['Coimbatore','Health Camps']},
+  {n:'UP Dept. of Social Welfare',s:'local',city:'Lucknow',c:['gov','financial'],d:'Old age pension and senior welfare schemes for Uttar Pradesh residents.',p:'0522-2236765',w:'https://swd.up.gov.in',t:['Lucknow','Pension']},
   {n:'Rajasthan Social Justice Dept.',s:'local',city:'Jaipur',c:['gov','financial'],d:'State pension, free travel pass, and welfare schemes for Rajasthan senior citizens.',p:'0141-2220200',w:'https://sje.rajasthan.gov.in',t:['Jaipur','Pension']},
   {n:'MP Dept. of Social Justice',s:'local',city:'Bhopal',c:['gov','financial'],d:'Madhya Pradesh old age pension and IGNOAPS implementation across all districts.',p:'0755-2550916',w:'https://socialjustice.mp.gov.in',t:['Bhopal','Pension']},
   {n:'Indore Senior Citizens Council',s:'local',city:'Indore',c:['ngo','social','legal'],d:'Legal aid, social activities, and health camps for senior citizens in Indore.',p:'0731-2496001',w:'https://indoreseniors.org',t:['Indore','Legal']},
   {n:'Assam Social Welfare Dept.',s:'local',city:'Guwahati',c:['gov','financial'],d:'Old age pension and senior welfare across Assam through district offices.',p:'0361-2237553',w:'https://socialwelfare.assam.gov.in',t:['Guwahati','Pension']},
-  {n:'Odisha Social Security — Madhu Babu Pension',s:'local',city:'Bhubaneswar',c:['gov','financial'],d:'Madhu Babu Pension Yojana for elderly BPL citizens in Odisha.',p:'0674-2395988',w:'https://ssepd.odisha.gov.in',t:['Bhubaneswar','Pension']},
+  {n:'Odisha — Madhu Babu Pension Yojana',s:'local',city:'Bhubaneswar',c:['gov','financial'],d:'Madhu Babu Pension Yojana for elderly BPL citizens in Odisha.',p:'0674-2395988',w:'https://ssepd.odisha.gov.in',t:['Bhubaneswar','Pension']},
   {n:'Goa Dept. of Social Welfare',s:'local',city:'Goa',c:['gov','financial','social'],d:'Dayanand Social Security Scheme pension and welfare for senior citizens in Goa.',p:'0832-2224962',w:'https://socialwelfare.goa.gov.in',t:['Goa','Pension']},
   {n:'Chandigarh Social Welfare Dept.',s:'local',city:'Chandigarh',c:['gov','financial'],d:'Old age pension and social security for senior citizens in Chandigarh UT.',p:'0172-2703296',w:'https://chdsw.gov.in',t:['Chandigarh','Pension']},
-  {n:'Coimbatore Senior Citizens Forum',s:'local',city:'Coimbatore',c:['ngo','social'],d:'Health camps, legal awareness, and social activities for Coimbatore seniors.',p:'0422-2391234',w:'https://cbescf.org',t:['Coimbatore','Health Camps']},
-  {n:'Thiruvananthapuram Senior Citizens Forum',s:'local',city:'Thiruvananthapuram',c:['ngo','social'],d:'Peer support, health awareness, and recreational activities for Trivandrum seniors.',p:'0471-2328456',w:'https://tscforum.org',t:['Trivandrum','Social']},
-  {n:'Pune Senior Citizens Association',s:'local',city:'Pune',c:['ngo','legal','social'],d:'Legal guidance on maintenance, pension, and property rights for Pune senior citizens.',p:'020-25672345',w:'https://puneseniors.org',t:['Pune','Legal']},
+];
+
+/* -------- PAGE 2 DATA: OLD AGE HOMES -------- */
+const HOMES=[
+  /* === FREE / SUBSIDISED === */
+  {n:'Missionaries of Charity Home for the Aged',city:'Kolkata',paid:false,d:'Run by Mother Teresa\'s organisation, provides free shelter, meals, and care for destitute elderly.',p:'033-22492277',w:'https://www.motherteresa.org',feat:['Meals','Medical Care','Spiritual Support'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Pranam Vriddhashram (Govt.)',city:'Kolkata',paid:false,d:'West Bengal government home providing free accommodation and healthcare to destitute seniors.',p:'033-24190550',w:'https://wbsocialwelfare.gov.in',feat:['Free','Govt-run','Medical Aid'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Asha Sadan (Govt. Old Age Home)',city:'Mumbai',paid:false,d:'Maharashtra government-run free home for destitute elderly women and men in Mumbai.',p:'022-23080203',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt-run','Women & Men'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Muktangan Rehabilitation Centre',city:'Mumbai',paid:false,d:'NGO-run free shelter and rehabilitation for abandoned elderly with medical and social support.',p:'022-28920720',w:'https://muktangan.org',feat:['Free','NGO','Rehabilitation'],logo:''},
+  {n:'Govt. Old Age Home Bangalore (Social Welfare)',city:'Bengaluru',paid:false,d:'Karnataka government free old age home for destitute seniors in the 60+ age group.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',feat:['Free','Govt','BPL'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Sneha Sadan Trust',city:'Bengaluru',paid:false,d:'Free old age home run by a charitable trust with meals, medical check-ups, and activities.',p:'080-23561234',w:'',feat:['Free','Trust','Meals'],logo:''},
+  {n:'Govt. Old Age Home, Tamil Nadu (TASMAC)',city:'Chennai',paid:false,d:'State-run old age homes across Tamil Nadu providing free accommodation and basic care.',p:'044-24357432',w:'https://socialjustice.tn.gov.in',feat:['Free','Govt','Tamil Nadu'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Sri Ramakrishna Mission Home',city:'Chennai',paid:false,d:'Free and subsidised accommodation for senior citizens with spiritual, medical, and social support.',p:'044-24892688',w:'https://chennaishrine.rkmm.org',feat:['Free','Trust','Spiritual'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ramakrishna_Mission_seal.svg/120px-Ramakrishna_Mission_seal.svg.png'},
+  {n:'HelpAge India Shelter Home',city:'Delhi',paid:false,d:'HelpAge-run free shelter homes for destitute elderly across Delhi NCR with food and medical care.',p:'011-41688955',w:'https://helpageindia.org',feat:['Free','NGO','Medical'],logo:'https://www.helpageindia.org/wp-content/uploads/2021/04/helpage-india-logo.png'},
+  {n:'Vatsalya Old Age Home (Delhi Govt.)',city:'Delhi',paid:false,d:'Government-run free old age home for abandoned and destitute senior citizens in Delhi.',p:'011-23392900',w:'https://socialjustice.delhi.gov.in',feat:['Free','Govt','Delhi'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Govt. Old Age Home, Hyderabad',city:'Hyderabad',paid:false,d:'Telangana Social Welfare department free home for destitute elderly with meals and healthcare.',p:'040-23390228',w:'https://wdcw.telangana.gov.in',feat:['Free','Govt','Telangana'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Sneha Care Home',city:'Hyderabad',paid:false,d:'Free shelter and palliative care for destitute elderly and HIV-positive seniors in Hyderabad.',p:'040-27660000',w:'https://snehacarehomes.org',feat:['Free','Palliative','NGO'],logo:''},
+  {n:'Govt. Old Age Home, Jaipur (Raj.)',city:'Jaipur',paid:false,d:'Rajasthan Social Justice department-run free old age home for BPL destitute elderly.',p:'0141-2220200',w:'https://sje.rajasthan.gov.in',feat:['Free','Govt','BPL'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Nirmal Hriday (Missionaries of Charity)',city:'Jaipur',paid:false,d:'Charitable home providing free care for destitute and ailing elderly with round-the-clock support.',p:'0141-2375990',w:'https://www.motherteresa.org',feat:['Free','Charitable','24/7'],logo:''},
+  {n:'Govt. Old Age Home, Pune',city:'Pune',paid:false,d:'Maharashtra state-run free old age home for destitute senior citizens in Pune.',p:'020-25671111',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt','Destitute'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Vasantdada Patil Pratishthan Home',city:'Pune',paid:false,d:'Free old age home with daily meals, medical check-ups, and recreational activities in Pune.',p:'020-24220011',w:'',feat:['Free','Trust','Activities'],logo:''},
+  {n:'Kerala Govt. Vayomithram Home',city:'Kochi',paid:false,d:'Kerala Social Security Mission-run subsidised care for elderly with home-visit backup services.',p:'0471-2317030',w:'https://socialsecuritymission.gov.in',feat:['Subsidised','Govt','Home Visit'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+  {n:'Govt. Old Age Home, Ahmedabad',city:'Ahmedabad',paid:false,d:'Gujarat Social Welfare-run free home for destitute elderly with healthcare and recreation.',p:'079-23251601',w:'https://sje.gujarat.gov.in',feat:['Free','Govt','Gujarat'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
+
+  /* === PAID === */
+  {n:'Antara Senior Living',city:'Delhi',paid:true,price:'₹40,000–₹1,20,000/mo',d:'Premium senior living community in Noida with independent apartments, assisted living, and memory care.',p:'1800-102-4781',w:'https://antaraseniorliving.com',feat:['Independent Living','Memory Care','Gym','24/7 Nursing'],logo:'https://antaraseniorliving.com/wp-content/uploads/2021/06/antara-logo.svg'},
+  {n:'Columbia Pacific Communities',city:'Bengaluru',paid:true,price:'₹35,000–₹1,00,000/mo',d:'Luxury senior living in Bengaluru with gourmet dining, wellness, fitness, and skilled nursing.',p:'080-46978888',w:'https://colpac.in',feat:['Luxury','Skilled Nursing','Dining','Fitness'],logo:'https://colpac.in/wp-content/uploads/2020/09/Columbia-Pacific-Logo.png'},
+  {n:'Serene Amara (Tata Housing)',city:'Bengaluru',paid:true,price:'₹30,000–₹80,000/mo',d:'Tata-backed premium retirement community offering assisted and independent living in Bengaluru.',p:'1800-209-1234',w:'https://www.tatahousing.in',feat:['Tata Group','Assisted Living','Swimming Pool'],logo:'https://www.tatahousing.in/images/logo.png'},
+  {n:'Athulya Assisted Living',city:'Chennai',paid:true,price:'₹28,000–₹75,000/mo',d:'Premium assisted living in Chennai with 24/7 medical support, physiotherapy, and recreation.',p:'044-45555555',w:'https://athulya.in',feat:['Assisted Living','Physio','24/7 Doctor'],logo:'https://athulya.in/wp-content/uploads/2021/03/Athulya-Logo.png'},
+  {n:'Brindavan Senior Living',city:'Chennai',paid:true,price:'₹22,000–₹60,000/mo',d:'Well-regarded retirement community in Chennai offering independent and assisted care with activities.',p:'044-24561234',w:'',feat:['Independent','Assisted','Activities'],logo:''},
+  {n:'Aman Senior Care',city:'Mumbai',paid:true,price:'₹35,000–₹90,000/mo',d:'Upscale senior care facility in Mumbai offering round-the-clock nursing, palliative care, and memory care.',p:'022-66960000',w:'https://amanseniorcare.com',feat:['Nursing Care','Palliative','Memory Care'],logo:''},
+  {n:'Epoch Elder Care',city:'Mumbai',paid:true,price:'₹25,000–₹70,000/mo',d:'Professionally managed senior living in Mumbai with trained staff, medical oversight, and social activities.',p:'022-26005050',w:'https://epocheldercare.com',feat:['Professional Staff','Medical','Social'],logo:''},
+  {n:'Pramod Eldercare',city:'Pune',paid:true,price:'₹18,000–₹55,000/mo',d:'Affordable and comfortable assisted living facility in Pune with trained nursing staff.',p:'020-27120000',w:'',feat:['Assisted','Nursing','Affordable'],logo:''},
+  {n:'Dignity Senior Care Homes',city:'Pune',paid:true,price:'₹22,000–₹65,000/mo',d:'Dignified senior living in Pune with a focus on independence, personal care, and community building.',p:'020-65101435',w:'https://dignityfoundation.com',feat:['Independence','Community','Nursing'],logo:'https://dignityfoundation.com/wp-content/uploads/2021/07/logo.png'},
+  {n:'Ashiana Senior Living',city:'Jaipur',paid:true,price:'₹15,000–₹45,000/mo',d:'Large retirement township in Jaipur with villas, apartments, clubs, and on-site medical care.',p:'0141-4008600',w:'https://ashianahousing.com/senior-living',feat:['Township','Villas','Club','Medical'],logo:'https://ashianahousing.com/images/ashiana-logo.png'},
+  {n:'Sri Sri Tattva Vruddhasrama',city:'Bengaluru',paid:true,price:'₹20,000–₹55,000/mo',d:'Art-of-Living affiliated retirement home emphasising spiritual wellness, yoga, and community.',p:'080-28432000',w:'https://srisritattva.com',feat:['Yoga','Spiritual','Meditation'],logo:''},
+  {n:'Nightingales Senior Care Centre',city:'Bengaluru',paid:true,price:'₹30,000–₹80,000/mo',d:'Residential dementia care and assisted living facility run by Nightingales Medical Trust in Bengaluru.',p:'080-25492411',w:'https://nightingalestrust.net',feat:['Dementia Care','Assisted','Memory'],logo:'https://nightingalestrust.net/wp-content/uploads/2020/09/NMT-Logo-1.png'},
+  {n:'Sreevalsam',city:'Kochi',paid:true,price:'₹18,000–₹50,000/mo',d:'Well-regarded private senior home in Kochi offering personalized assisted living with medical support.',p:'0484-2550234',w:'',feat:['Assisted','Medical','Personalized'],logo:''},
+  {n:'Heritage Elders\' Home',city:'Hyderabad',paid:true,price:'₹20,000–₹60,000/mo',d:'Comfortable retirement facility in Hyderabad with recreation, healthcare, and dietary services.',p:'040-23456789',w:'',feat:['Recreation','Healthcare','Diet'],logo:''},
+  {n:'Sukoon Senior Care',city:'Kolkata',paid:true,price:'₹15,000–₹45,000/mo',d:'Private senior care centre in Kolkata providing assisted living, geriatric care and community activities.',p:'033-40000123',w:'',feat:['Geriatric','Assisted','Activities'],logo:''},
+  {n:'Epoch Elder Care Delhi',city:'Delhi',paid:true,price:'₹28,000–₹75,000/mo',d:'Professionally managed luxury senior living in Delhi NCR with skilled nursing and life enrichment programs.',p:'011-40600100',w:'https://epocheldercare.com',feat:['Luxury','Skilled Nursing','Programs'],logo:''},
+  {n:'Mimosa Hills (Ahmedabad)',city:'Ahmedabad',paid:true,price:'₹18,000–₹55,000/mo',d:'Senior living township in Ahmedabad with independent villas, medical facilities, and club amenities.',p:'079-26831234',w:'',feat:['Township','Villas','Club'],logo:''},
 ];
 
 const iMap={gov:'ti-building-bank',ngo:'ti-heart',health:'ti-stethoscope',legal:'ti-scale',financial:'ti-coin',social:'ti-users'};
 let cat='all';
+let homeCity='all';
 
+/* PAGE SWITCH */
+function switchView(id, btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* -------- PAGE 1 RENDER -------- */
 function setCat(v,b){cat=v;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));b.classList.add('on');render();}
 
+function logoHTML(name, fallbackCls){
+  const url = LOGOS[name];
+  if(url){
+    return `<div class="ci"><img src="${url}" alt="${name} logo" onerror="this.parentNode.innerHTML='<i class=\\'ti ${iMap[fallbackCls]||'ti-star'}\\' aria-hidden=\\'true\\'></i>';this.parentNode.className='ci ci-${fallbackCls}';"></div>`;
+  }
+  return `<div class="ci ci-${fallbackCls}"><i class="ti ${iMap[fallbackCls]||'ti-star'}" aria-hidden="true"></i></div>`;
+}
+
 function cardHTML(r){
-  const ci='ci-'+(r.c[0]);
-  const badge=r.s==='national'?'<span class="card-badge cb-nat">National</span>':'<span class="card-badge cb-loc">Local</span>';
   return`<div class="card">
   <div class="card-top">
-    <div class="card-icon ${ci}"><i class="ti ${iMap[r.c[0]]||'ti-star'}" aria-hidden="true"></i></div>
-    ${badge}
+    ${logoHTML(r.n, r.c[0])}
+    <span class="cbadge ${r.s==='national'?'cb-nat':'cb-loc'}">${r.s==='national'?'National':'Local'}</span>
   </div>
-  <div class="card-name">${r.n}</div>
-  <div class="card-cat">${r.c.map(x=>x[0].toUpperCase()+x.slice(1)).join(' · ')}</div>
-  <div class="card-desc">${r.d}</div>
-  <div class="card-tags">${r.t.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
-  <div class="card-foot">
-    <div class="card-ph"><i class="ti ti-phone" style="font-size:12px" aria-hidden="true"></i><b>${r.p}</b></div>
-    <a class="card-link" href="${r.w}" target="_blank"><i class="ti ti-external-link" style="font-size:12px" aria-hidden="true"></i> Visit</a>
+  <div class="cn">${r.n}</div>
+  <div class="cc">${r.c.map(x=>x[0].toUpperCase()+x.slice(1)).join(' · ')}</div>
+  <div class="cd">${r.d}</div>
+  <div class="ctags">${r.t.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+  <div class="cfoot">
+    <div class="cph"><i class="ti ti-phone" style="font-size:11px" aria-hidden="true"></i><b>${r.p}</b></div>
+    <a class="clink" href="${r.w||'#'}" target="_blank"><i class="ti ti-external-link" style="font-size:11px" aria-hidden="true"></i> Visit</a>
   </div>
 </div>`;}
 
 function render(){
-  const city=document.getElementById('citySelect').value;
-  const cityName=document.getElementById('citySelect').options[document.getElementById('citySelect').selectedIndex].text;
+  const cityEl=document.getElementById('citySelect');
+  const city=cityEl.value;
+  const cityName=cityEl.options[cityEl.selectedIndex].text;
   const q=document.getElementById('q').value.toLowerCase();
   const ok=r=>{
     const cm=cat==='all'||r.c.includes(cat);
@@ -276,22 +456,86 @@ function render(){
   const loc=R.filter(r=>r.s==='local'&&(city==='all'||r.city===city)&&ok(r));
   document.getElementById('nCnt').textContent=nat.length;
   document.getElementById('lCnt').textContent=loc.length;
-  document.getElementById('natGrid').innerHTML=nat.length?nat.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-search" style="font-size:22px;display:block;margin:0 auto 6px" aria-hidden="true"></i>No national agencies match.</div>`;
+  document.getElementById('natGrid').innerHTML=nat.length?nat.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-search" style="font-size:20px;display:block;margin:0 auto 6px"></i>No national agencies match.</div>`;
   const lbl=document.getElementById('cityLbl');
   const tip=document.getElementById('tip');
-  const tipTxt=document.getElementById('tipTxt');
-  if(city==='all'){lbl.textContent='— all cities';tip.style.display='none';}
-  else{lbl.textContent=`— ${cityName}`;}
-  if(!loc.length&&city!=='all'){tip.style.display='flex';tipTxt.textContent=`No local agencies listed for ${cityName} yet — national agencies above serve all cities.`;}
-  else{tip.style.display='none';}
-  document.getElementById('locGrid').innerHTML=loc.length?loc.map(cardHTML).join(''):(city==='all'?`<div class="empty"><i class="ti ti-map-pin" style="font-size:22px;display:block;margin:0 auto 6px" aria-hidden="true"></i>Select a city to see local agencies.</div>`:'');
+  if(city==='all'){
+    lbl.textContent='— all cities';
+    tip.style.display='none';
+    document.getElementById('locGrid').innerHTML=loc.length?loc.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-map-pin" style="font-size:20px;display:block;margin:0 auto 6px"></i>Select a city above to see local agencies.</div>`;
+  } else {
+    lbl.textContent=`— ${cityName}`;
+    if(!loc.length){
+      tip.style.display='flex';
+      document.getElementById('tipTxt').textContent=`No local agencies listed for ${cityName} yet — national agencies below serve all cities.`;
+      document.getElementById('locGrid').innerHTML='';
+    } else {
+      tip.style.display='none';
+      document.getElementById('locGrid').innerHTML=loc.map(cardHTML).join('');
+    }
+  }
 }
 
 function aiQ(){
   const q=document.getElementById('q').value;
   const c=document.getElementById('citySelect').options[document.getElementById('citySelect').selectedIndex].text;
-  sendPrompt(q?`Find elderly care resources for "${q}" in ${c}, India`:`What elderly care NGOs and government schemes are available for seniors in ${c}, India?`);
+  if(typeof sendPrompt==='function') sendPrompt(q?`Find elderly care resources for "${q}" in ${c}, India`:`What elderly care NGOs and government schemes are available for seniors in ${c}, India?`);
 }
 
+/* -------- PAGE 2 RENDER -------- */
+function homeCardHTML(h){
+  const logoEl = h.logo
+    ? `<div class="hci"><img src="${h.logo}" alt="${h.n}" onerror="this.parentNode.innerHTML='<i class=\\'ti ti-home-heart\\' aria-hidden=\\'true\\'></i>';this.parentNode.className='hci';"></div>`
+    : `<div class="hci"><i class="ti ti-home-heart"></i></div>`;
+  return `<div class="home-card">
+  <div class="home-card-top">
+    ${logoEl}
+    <span class="price-badge ${h.paid?'pb-paid':'pb-free'}">${h.paid?'Paid':'Free'}</span>
+  </div>
+  <div class="hn">${h.n}</div>
+  <div class="hcity"><i class="ti ti-map-pin" style="font-size:11px"></i>${h.city}</div>
+  <div class="hd">${h.d}</div>
+  ${h.paid&&h.price?`<div style="font-size:calc(11px * 1.15);color:#92400e;font-weight:500;margin-bottom:8px">${h.price}</div>`:''}
+  <div class="hfeat">${h.feat.map(f=>`<span class="feat">${f}</span>`).join('')}</div>
+  <div class="hfoot">
+    <div class="hph"><i class="ti ti-phone" style="font-size:11px"></i><b>${h.p}</b></div>
+    ${h.w?`<a class="hlink" href="${h.w}" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> Visit</a>`:'<span></span>'}
+  </div>
+</div>`;
+}
+
+function renderHomes(){
+  const q=(document.getElementById('hq').value||'').toLowerCase();
+  const filter=h=>{
+    const cityOk=homeCity==='all'||h.city===homeCity;
+    const qOk=!q||h.n.toLowerCase().includes(q)||h.city.toLowerCase().includes(q)||h.d.toLowerCase().includes(q)||h.feat.some(f=>f.toLowerCase().includes(q));
+    return cityOk&&qOk;
+  };
+  const free=HOMES.filter(h=>!h.paid&&filter(h));
+  const paid=HOMES.filter(h=>h.paid&&filter(h));
+  document.getElementById('freeCnt').textContent=free.length;
+  document.getElementById('paidCnt').textContent=paid.length;
+  document.getElementById('freeGrid').innerHTML=free.length?free.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 6px"></i>No free homes match your filter.</div>`;
+  document.getElementById('paidGrid').innerHTML=paid.length?paid.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 6px"></i>No paid homes match your filter.</div>`;
+}
+
+/* City chips for page 2 */
+function buildCityChips(){
+  const cities=['all',...[...new Set(HOMES.map(h=>h.city))].sort()];
+  const container=document.getElementById('homeCityChips');
+  container.innerHTML=cities.map(c=>`<button class="city-chip${c==='all'?' on':''}" onclick="setHomeCity('${c}',this)">${c==='all'?'All Cities':c}</button>`).join('');
+}
+
+function setHomeCity(c,btn){
+  homeCity=c;
+  document.querySelectorAll('.city-chip').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderHomes();
+}
+
+buildCityChips();
 render();
+renderHomes();
 </script>
+</body>
+</html>

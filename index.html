@@ -6,320 +6,690 @@
 <title>Elderly Care Hub India</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.2.0/tabler-icons.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --font-sans:'DM Sans',sans-serif;
-  --color-text-primary:#1a1a1a;
-  --color-text-secondary:#6b7280;
-  --color-background-primary:#ffffff;
-  --color-background-secondary:#f5f5f4;
-  --color-border-tertiary:#e5e7eb;
-  --color-border-secondary:#d1d5db;
-  --base-font-size:1.15; /* 15% bigger = 1.15 multiplier */
+  --bottle:#085041;
+  --bottle-dark:#053328;
+  --bottle-light:#0F6E56;
+  --mint:#5DCAA5;
+  --mint-pale:#E1F5EE;
+  --gold:#D4A853;
+  --gold-pale:#FEF3C7;
+  --text:#1a1a1a;
+  --text-2:#5a6272;
+  --text-3:#9aa0ab;
+  --bg:#fafaf8;
+  --bg-2:#f4f4f1;
+  --border:#e5e7e2;
+  --border-2:#d0d4cc;
+  --font-display:'Playfair Display',serif;
+  --font-body:'DM Sans',sans-serif;
+  --fs:1.15;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans);font-size:calc(14px * var(--base-font-size));background:#fafaf9;color:var(--color-text-primary)}
-.page{width:80%;max-width:1100px;min-width:560px;margin:0 auto;padding:1.5rem 0 3rem}
+body{font-family:var(--font-body);font-size:calc(14px * var(--fs));background:var(--bg);color:var(--text)}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--font-body);cursor:pointer}
+select,input{font-family:var(--font-body)}
 
-/* NAV TABS */
-.nav-tabs{display:flex;gap:4px;margin-bottom:1.8rem;background:var(--color-background-secondary);border-radius:12px;padding:4px;width:fit-content}
-.nav-tab{font-size:calc(13px * 1.15);font-weight:500;padding:8px 20px;border-radius:9px;border:none;background:transparent;color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:6px;transition:all 0.15s}
-.nav-tab.active{background:#fff;color:#085041;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
-.nav-tab:hover:not(.active){color:var(--color-text-primary)}
+/* ===== TOP BANNER ===== */
+.top-banner{background:var(--bottle);padding:0;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(8,80,65,0.18)}
+.banner-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.banner-logo{display:flex;align-items:center;gap:12px;padding:10px 0}
+.logo-svg{width:38px;height:38px;flex-shrink:0}
+.banner-title{font-family:var(--font-display);font-size:calc(16px * var(--fs));color:#fff;font-weight:600;letter-spacing:0.01em}
+.banner-subtitle{font-size:calc(10px * var(--fs));color:var(--mint);letter-spacing:0.06em;text-transform:uppercase;margin-top:1px}
+.banner-page-label{font-size:calc(11px * var(--fs));color:rgba(255,255,255,0.6);font-weight:400;letter-spacing:0.02em}
+.banner-nav{display:flex;gap:2px}
+.bnav-btn{font-size:calc(12px * var(--fs));padding:10px 16px;border:none;background:transparent;color:rgba(255,255,255,0.65);cursor:pointer;display:flex;align-items:center;gap:5px;white-space:nowrap;border-bottom:2.5px solid transparent;transition:all 0.15s;font-weight:500}
+.bnav-btn:hover{color:#fff;background:rgba(255,255,255,0.07)}
+.bnav-btn.active{color:#fff;border-bottom-color:var(--mint)}
 
-/* PAGE visibility */
+/* ===== LAYOUT ===== */
+.page-wrap{max-width:1100px;margin:0 auto;padding:2rem 1.5rem 4rem}
 .view{display:none}.view.active{display:block}
 
-/* TOP BAR */
-.topbar{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:1.8rem;flex-wrap:wrap}
-.top-selectors{display:flex;gap:10px;align-items:flex-end;flex-shrink:0;flex-wrap:wrap}
-.sel-grp{display:flex;flex-direction:column;gap:4px}
-.sel-grp label{font-size:calc(10px * 1.15);font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.08em}
-.sel-grp select{font-size:calc(13px * 1.15);min-width:130px;padding:6px 10px;border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
-
-/* HERO */
-.hero-strip{background:#085041;border-radius:16px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.hero-stats{display:flex;gap:2rem}
-.hs-num{font-size:calc(22px * 1.15);font-weight:500;color:#fff}
-.hs-lbl{font-size:calc(11px * 1.15);color:#5DCAA5}
-.hero-helplines{display:flex;gap:10px;flex-wrap:wrap}
-.hl{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:8px}
-.hl-ic{font-size:calc(14px * 1.15);color:#5DCAA5}
-.hl-num{font-size:calc(13px * 1.15);font-weight:500;color:#fff}
-.hl-lbl{font-size:calc(10px * 1.15);color:#9FE1CB}
-
-/* SEARCH */
-.search-pill-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap}
-.search-wrap{display:flex;flex:1;min-width:200px;gap:8px}
-.search-wrap input{flex:1;font-size:calc(13px * 1.15);padding:8px 12px;border-radius:8px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary)}
-.ai-btn{font-size:calc(12px * 1.15);padding:0 14px;height:38px;white-space:nowrap;background:#085041;color:#fff;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px}
-.ai-btn:hover{background:#0F6E56}
-.pills{display:flex;gap:6px;flex-wrap:wrap}
-.pill{font-size:calc(12px * 1.15);padding:6px 13px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap}
-.pill:hover{background:var(--color-background-secondary)}
-.pill.on{background:#085041;color:#fff;border-color:#085041}
-
-/* SECTION HEADS */
-.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.sec-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:calc(13px * 1.15)}
+/* ===== SHARED SECTION HEADS ===== */
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sec-icon{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:calc(13px * var(--fs))}
 .si-loc{background:#FAEEDA;color:#633806}
 .si-nat{background:#E6F1FB;color:#185FA5}
-.si-free{background:#E1F5EE;color:#085041}
+.si-free{background:var(--mint-pale);color:var(--bottle)}
 .si-paid{background:#FAEEDA;color:#633806}
-.sec-title{font-size:calc(14px * 1.15);font-weight:500;color:var(--color-text-primary)}
-.cnt{font-size:calc(11px * 1.15);padding:2px 9px;border-radius:9px;font-weight:500}
+.sec-title{font-size:calc(14px * var(--fs));font-weight:600;color:var(--text)}
+.cnt{font-size:calc(11px * var(--fs));padding:2px 9px;border-radius:9px;font-weight:600}
 .cnt-loc{background:#FAEEDA;color:#633806}
 .cnt-nat{background:#E6F1FB;color:#0C447C}
-.cnt-free{background:#E1F5EE;color:#085041}
+.cnt-free{background:var(--mint-pale);color:var(--bottle)}
 .cnt-paid{background:#FAEEDA;color:#633806}
-.sec-sub{font-size:calc(12px * 1.15);color:var(--color-text-secondary)}
+.sec-sub{font-size:calc(11px * var(--fs));color:var(--text-2)}
+.divider{border:none;border-top:0.5px solid var(--border);margin:2rem 0}
 
-.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:2rem 0}
+/* ===== HERO STRIP ===== */
+.hero-strip{background:var(--bottle);border-radius:16px;padding:1rem 1.5rem;margin-bottom:1.8rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.hero-stats{display:flex;gap:2rem}
+.hs-num{font-size:calc(22px * var(--fs));font-weight:600;color:#fff;font-family:var(--font-display)}
+.hs-lbl{font-size:calc(10px * var(--fs));color:var(--mint)}
+.hero-helplines{display:flex;gap:8px;flex-wrap:wrap}
+.hl{background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:8px}
+.hl-ic{font-size:calc(14px * var(--fs));color:var(--mint)}
+.hl-num{font-size:calc(13px * var(--fs));font-weight:600;color:#fff}
+.hl-lbl{font-size:calc(10px * var(--fs));color:#9FE1CB}
 
-/* GRID & CARD */
+/* ===== SELECTORS ===== */
+.top-selectors{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:1.5rem}
+.sel-grp{display:flex;flex-direction:column;gap:4px}
+.sel-grp label{font-size:calc(10px * var(--fs));font-weight:600;color:var(--text-2);text-transform:uppercase;letter-spacing:0.08em}
+.sel-grp select{font-size:calc(13px * var(--fs));padding:7px 11px;border-radius:8px;border:0.5px solid var(--border);background:#fff;min-width:150px}
+
+/* ===== PILLS ===== */
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.pill{font-size:calc(12px * var(--fs));padding:6px 14px;border-radius:20px;border:0.5px solid var(--border);background:#fff;color:var(--text-2);cursor:pointer;display:flex;align-items:center;gap:4px;white-space:nowrap;transition:all 0.12s}
+.pill:hover{background:var(--bg-2)}
+.pill.on{background:var(--bottle);color:#fff;border-color:var(--bottle)}
+
+/* ===== CITY CHIPS ===== */
+.city-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.city-chip{font-size:calc(12px * var(--fs));padding:6px 14px;border-radius:20px;border:0.5px solid var(--border);background:#fff;color:var(--text-2);cursor:pointer;white-space:nowrap;transition:all 0.12s}
+.city-chip.on{background:var(--bottle);color:#fff;border-color:var(--bottle)}
+.city-chip:hover:not(.on){background:var(--bg-2)}
+
+/* ===== GRID & CARDS ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:12px;margin-bottom:0.5rem}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s}
-.card:hover{border-color:var(--color-border-secondary)}
+.card{background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s,box-shadow 0.15s}
+.card:hover{border-color:var(--border-2);box-shadow:0 2px 10px rgba(0,0,0,0.06)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-
-/* LOGO area */
-.ci{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:calc(17px * 1.15);flex-shrink:0;border:0.5px solid var(--color-border-tertiary)}
+.ci{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:calc(17px * var(--fs));flex-shrink:0;border:0.5px solid var(--border)}
 .ci img{width:44px;height:44px;object-fit:contain;border-radius:9px;background:#fff}
 .ci-gov{background:#E6F1FB;color:#185FA5}
-.ci-ngo{background:#E1F5EE;color:#085041}
+.ci-ngo{background:var(--mint-pale);color:var(--bottle)}
 .ci-health{background:#FCEBEB;color:#A32D2D}
 .ci-legal{background:#FAEEDA;color:#633806}
 .ci-financial{background:#FAEEDA;color:#633806}
 .ci-social{background:#EEEDFE;color:#3C3489}
-.ci-home{background:#E1F5EE;color:#085041}
-.cbadge{font-size:calc(10px * 1.15);padding:3px 8px;border-radius:7px;font-weight:500}
+.ci-home{background:var(--mint-pale);color:var(--bottle)}
+.cbadge{font-size:calc(10px * var(--fs));padding:3px 8px;border-radius:7px;font-weight:600}
 .cb-nat{background:#E6F1FB;color:#0C447C}
-.cb-loc{background:#E1F5EE;color:#085041}
-.cb-free{background:#E1F5EE;color:#085041}
+.cb-loc{background:var(--mint-pale);color:var(--bottle)}
+.cb-free{background:var(--mint-pale);color:var(--bottle)}
 .cb-paid{background:#FAEEDA;color:#633806}
-.cn{font-size:calc(13px * 1.15);font-weight:500;color:var(--color-text-primary);line-height:1.3;margin-bottom:3px}
-.cc{font-size:calc(10px * 1.15);color:var(--color-text-secondary);margin-bottom:7px}
-.cd{font-size:calc(12px * 1.15);color:var(--color-text-secondary);line-height:1.5;margin-bottom:9px}
-.ctags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
-.tag{font-size:calc(10px * 1.15);padding:2px 7px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
-.cfoot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px}
-.cph{font-size:calc(11px * 1.15);color:var(--color-text-secondary);display:flex;align-items:center;gap:3px}
-.cph b{color:var(--color-text-primary);font-weight:500}
-.clink{font-size:calc(11px * 1.15);color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:3px}
-.empty{text-align:center;padding:2rem;color:var(--color-text-secondary);font-size:calc(13px * 1.15);grid-column:1/-1}
-.tip{font-size:calc(12px * 1.15);color:var(--color-text-secondary);padding:10px 14px;background:var(--color-background-secondary);border-radius:8px;margin-bottom:12px;display:none;align-items:center;gap:7px}
+.cn{font-size:calc(13px * var(--fs));font-weight:600;color:var(--text);line-height:1.3;margin-bottom:3px}
+.cc{font-size:calc(10px * var(--fs));color:var(--text-2);margin-bottom:6px}
+.cd{font-size:calc(12px * var(--fs));color:var(--text-2);line-height:1.55;margin-bottom:8px}
+.ctags,.hfeat{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.tag,.feat{font-size:calc(10px * var(--fs));padding:2px 7px;border-radius:7px;background:var(--bg-2);color:var(--text-2);border:0.5px solid var(--border)}
+.cfoot,.hfoot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:9px}
+.cph,.hph{font-size:calc(11px * var(--fs));color:var(--text-2);display:flex;align-items:center;gap:4px}
+.cph b,.hph b{color:var(--text);font-weight:600}
+.clink,.hlink{font-size:calc(11px * var(--fs));color:#185FA5;display:flex;align-items:center;gap:3px}
+.empty{text-align:center;padding:2.5rem;color:var(--text-2);font-size:calc(13px * var(--fs));grid-column:1/-1}
+.tip{font-size:calc(12px * var(--fs));color:var(--text-2);padding:10px 14px;background:var(--bg-2);border-radius:8px;margin-bottom:12px;display:none;align-items:center;gap:7px}
 
-/* OLD AGE HOMES page */
-.homes-topbar{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.homes-city-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1.5rem}
-.city-chip{font-size:calc(12px * 1.15);padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;white-space:nowrap;transition:all 0.12s}
-.city-chip.on{background:#085041;color:#fff;border-color:#085041}
-.city-chip:hover:not(.on){background:var(--color-background-secondary)}
-.home-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s}
-.home-card:hover{border-color:var(--color-border-secondary)}
-.home-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-.hci{width:44px;height:44px;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:#E1F5EE;color:#085041;border:0.5px solid var(--color-border-tertiary)}
-.hci img{width:44px;height:44px;object-fit:contain;border-radius:9px;background:#fff}
-.price-badge{font-size:calc(10px * 1.15);padding:3px 9px;border-radius:7px;font-weight:600}
-.pb-free{background:#E1F5EE;color:#085041}
-.pb-paid{background:#FEF3C7;color:#92400E}
-.hn{font-size:calc(13px * 1.15);font-weight:500;color:var(--color-text-primary);line-height:1.3;margin-bottom:2px}
-.hcity{font-size:calc(10px * 1.15);color:var(--color-text-secondary);margin-bottom:6px;display:flex;align-items:center;gap:3px}
-.hd{font-size:calc(12px * 1.15);color:var(--color-text-secondary);line-height:1.5;margin-bottom:8px}
-.hfeat{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
-.feat{font-size:calc(10px * 1.15);padding:2px 7px;border-radius:7px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
-.hfoot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:9px}
-.hph{font-size:calc(11px * 1.15);color:var(--color-text-secondary);display:flex;align-items:center;gap:3px}
-.hph b{color:var(--color-text-primary);font-weight:500}
-.hlink{font-size:calc(11px * 1.15);color:#185FA5;text-decoration:none;display:flex;align-items:center;gap:3px}
-.price-note{font-size:calc(11px * 1.15);color:#92400E;font-weight:500}
+/* ===== PAGE 1: ABOUT ===== */
+.about-hero{background:linear-gradient(135deg,var(--bottle) 0%,#0a6650 60%,#0d7a5f 100%);border-radius:20px;padding:3rem 2.5rem;margin-bottom:2.5rem;position:relative;overflow:hidden}
+.about-hero::before{content:'';position:absolute;right:-40px;top:-40px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,0.04);pointer-events:none}
+.about-hero::after{content:'';position:absolute;right:60px;bottom:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.03);pointer-events:none}
+.about-hero-logo{display:flex;align-items:center;gap:16px;margin-bottom:1.8rem}
+.about-logo-big{width:64px;height:64px}
+.about-hero-brand{color:#fff}
+.about-hero-brand h2{font-family:var(--font-display);font-size:calc(32px * var(--fs));font-weight:700;line-height:1.1;margin-bottom:6px}
+.about-hero-brand p{font-size:calc(13px * var(--fs));color:var(--mint);letter-spacing:0.06em;text-transform:uppercase}
+.about-tagline{font-family:var(--font-display);font-size:calc(18px * var(--fs));color:rgba(255,255,255,0.9);line-height:1.5;max-width:680px;margin-bottom:1.5rem;font-style:italic}
+.about-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
+.astat{border-left:2px solid var(--mint);padding-left:14px}
+.astat-n{font-family:var(--font-display);font-size:calc(26px * var(--fs));color:#fff;font-weight:700}
+.astat-l{font-size:calc(11px * var(--fs));color:var(--mint)}
+
+.about-pillars{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:2.5rem}
+.pillar{background:#fff;border:0.5px solid var(--border);border-radius:14px;padding:1.4rem 1.3rem;transition:box-shadow 0.15s,border-color 0.15s}
+.pillar:hover{box-shadow:0 4px 16px rgba(8,80,65,0.1);border-color:var(--mint)}
+.pillar-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.pi-1{background:#E1F5EE;color:var(--bottle)}
+.pi-2{background:#E6F1FB;color:#185FA5}
+.pi-3{background:#FAEEDA;color:#633806}
+.pi-4{background:#EEEDFE;color:#3C3489}
+.pi-5{background:#FCEBEB;color:#A32D2D}
+.pillar h3{font-size:calc(13px * var(--fs));font-weight:600;color:var(--text);margin-bottom:6px;font-family:var(--font-display)}
+.pillar p{font-size:calc(12px * var(--fs));color:var(--text-2);line-height:1.55}
+
+.about-mission{background:#fff;border:0.5px solid var(--border);border-radius:16px;padding:2rem 2rem;margin-bottom:2rem}
+.about-mission h3{font-family:var(--font-display);font-size:calc(20px * var(--fs));color:var(--bottle);margin-bottom:1rem}
+.about-mission p{font-size:calc(13px * var(--fs));color:var(--text-2);line-height:1.75;margin-bottom:0.8rem}
+.about-mission p:last-child{margin-bottom:0}
+.about-mission strong{color:var(--text);font-weight:600}
+
+.helpline-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.hline-card{background:var(--bottle);border-radius:12px;padding:1rem 1.1rem;display:flex;align-items:center;gap:12px}
+.hline-ic{font-size:22px;color:var(--mint);flex-shrink:0}
+.hline-num{font-size:calc(15px * var(--fs));font-weight:700;color:#fff;font-family:var(--font-display)}
+.hline-lbl{font-size:calc(10px * var(--fs));color:var(--mint)}
+
+/* ===== PAGE 4: EMPLOYMENT ===== */
+.job-card{background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:1.1rem 1.2rem;transition:border-color 0.15s,box-shadow 0.15s;display:flex;flex-direction:column;gap:0}
+.job-card:hover{border-color:var(--border-2);box-shadow:0 2px 10px rgba(0,0,0,0.06)}
+.job-src{font-size:calc(10px * var(--fs));font-weight:700;padding:2px 8px;border-radius:7px;width:fit-content;margin-bottom:8px}
+.src-naukri{background:#FFF3E0;color:#E65100}
+.src-linkedin{background:#E3F2FD;color:#0277BD}
+.src-iimjobs{background:#F3E5F5;color:#6A1B9A}
+.src-govt{background:var(--mint-pale);color:var(--bottle)}
+.src-timesjobs{background:#FBE9E7;color:#BF360C}
+.job-title{font-size:calc(13px * var(--fs));font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3}
+.job-org{font-size:calc(11px * var(--fs));color:var(--text-2);margin-bottom:6px}
+.job-desc{font-size:calc(12px * var(--fs));color:var(--text-2);line-height:1.5;margin-bottom:8px;flex:1}
+.job-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.job-tag{font-size:calc(10px * var(--fs));padding:2px 7px;border-radius:7px;background:var(--bg-2);color:var(--text-2);border:0.5px solid var(--border)}
+.job-foot{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--border);padding-top:9px;margin-top:auto}
+.job-loc{font-size:calc(11px * var(--fs));color:var(--text-2);display:flex;align-items:center;gap:3px}
+.job-apply{font-size:calc(11px * var(--fs));color:#fff;background:var(--bottle);border:none;border-radius:7px;padding:5px 12px;cursor:pointer;display:flex;align-items:center;gap:4px;text-decoration:none;transition:background 0.12s}
+.job-apply:hover{background:var(--bottle-light)}
+.emp-sources{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:1.8rem}
+.src-badge{font-size:calc(12px * var(--fs));padding:7px 14px;border-radius:20px;border:0.5px solid var(--border);background:#fff;color:var(--text-2);display:flex;align-items:center;gap:5px;cursor:pointer;transition:all 0.12s}
+.src-badge:hover{background:var(--bg-2)}
+.src-badge a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:5px}
+
+/* ===== PAGE 5: CROWDFUNDING ===== */
+.fund-hero{background:linear-gradient(135deg,var(--bottle) 0%,#0a6650 100%);border-radius:20px;padding:2.5rem;margin-bottom:2rem;text-align:center;position:relative;overflow:hidden}
+.fund-hero::before{content:'❤';font-size:200px;position:absolute;opacity:0.04;right:-20px;bottom:-40px;line-height:1}
+.fund-hero h2{font-family:var(--font-display);font-size:calc(28px * var(--fs));color:#fff;margin-bottom:10px;font-weight:700}
+.fund-hero p{font-size:calc(14px * var(--fs));color:rgba(255,255,255,0.82);max-width:600px;margin:0 auto 1.5rem;line-height:1.65}
+.fund-goals{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:2rem}
+.fund-goal{background:#fff;border:0.5px solid var(--border);border-radius:12px;padding:1.2rem;text-align:center}
+.fg-icon{font-size:28px;margin-bottom:8px}
+.fg-title{font-size:calc(12px * var(--fs));font-weight:600;color:var(--text);margin-bottom:4px}
+.fg-desc{font-size:calc(11px * var(--fs));color:var(--text-2);line-height:1.5}
+
+.fund-box{background:#fff;border:0.5px solid var(--border);border-radius:16px;padding:2rem;max-width:560px;margin:0 auto 2rem}
+.fund-box h3{font-family:var(--font-display);font-size:calc(20px * var(--fs));color:var(--bottle);margin-bottom:0.5rem;text-align:center}
+.fund-box p.sub{font-size:calc(12px * var(--fs));color:var(--text-2);text-align:center;margin-bottom:1.5rem}
+.amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem}
+.amt-btn{border:1.5px solid var(--border);border-radius:10px;padding:10px 6px;background:#fff;font-size:calc(13px * var(--fs));font-weight:600;color:var(--text);cursor:pointer;transition:all 0.12s;font-family:var(--font-display)}
+.amt-btn:hover{border-color:var(--bottle);color:var(--bottle)}
+.amt-btn.sel{border-color:var(--bottle);background:var(--mint-pale);color:var(--bottle)}
+.custom-amt{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:calc(13px * var(--fs));margin-bottom:1.2rem;font-family:var(--font-display);color:var(--text)}
+.custom-amt:focus{outline:none;border-color:var(--bottle)}
+.donor-fields{display:grid;gap:10px;margin-bottom:1.5rem}
+.donor-fields input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:calc(13px * var(--fs));font-family:var(--font-body);color:var(--text)}
+.donor-fields input:focus{outline:none;border-color:var(--bottle)}
+.donate-btn{width:100%;background:var(--bottle);color:#fff;border:none;border-radius:12px;padding:14px;font-size:calc(15px * var(--fs));font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.15s;font-family:var(--font-display)}
+.donate-btn:hover{background:var(--bottle-light)}
+.upi-note{font-size:calc(11px * var(--fs));color:var(--text-3);text-align:center;margin-top:10px}
+.trust-row{display:flex;justify-content:center;gap:16px;margin-top:1.2rem;flex-wrap:wrap}
+.trust-item{font-size:calc(11px * var(--fs));color:var(--text-2);display:flex;align-items:center;gap:4px}
+.fund-disclaimer{background:var(--bg-2);border-radius:10px;padding:1rem 1.2rem;font-size:calc(11px * var(--fs));color:var(--text-2);line-height:1.6;text-align:center;margin-bottom:1.5rem}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:18px;padding:2rem;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2)}
+.modal h3{font-family:var(--font-display);font-size:calc(20px * var(--fs));color:var(--bottle);margin-bottom:0.5rem}
+.modal p{font-size:calc(13px * var(--fs));color:var(--text-2);line-height:1.6;margin-bottom:1.2rem}
+.modal .qr-area{width:180px;height:180px;margin:0 auto 1rem;border:2px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--bg-2);flex-direction:column;gap:8px}
+.modal .qr-area svg{width:120px;height:120px}
+.modal-close{border:none;background:var(--bottle);color:#fff;border-radius:10px;padding:10px 24px;font-size:calc(13px * var(--fs));cursor:pointer;font-family:var(--font-body);font-weight:600}
+.pay-methods{display:flex;gap:10px;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.pay-method{border:1.5px solid var(--border);border-radius:10px;padding:8px 16px;font-size:calc(12px * var(--fs));font-weight:600;color:var(--text-2);cursor:pointer;background:#fff;transition:all 0.12s}
+.pay-method.sel{border-color:var(--bottle);color:var(--bottle);background:var(--mint-pale)}
 </style>
 </head>
 <body>
-<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Elderly Care Hub India</h2>
 
-<div class="page">
+<!-- ===== STICKY TOP BANNER ===== -->
+<div class="top-banner">
+  <div class="banner-inner">
+    <div class="banner-logo">
+      <svg class="logo-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.1)"/>
+        <!-- Tree of life / elder silhouette -->
+        <circle cx="24" cy="13" r="5" fill="#5DCAA5"/>
+        <rect x="22.5" y="17" width="3" height="8" rx="1.5" fill="#5DCAA5"/>
+        <!-- arms (open embrace) -->
+        <path d="M23 22 Q16 20 14 26" stroke="#5DCAA5" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M25 22 Q32 20 34 26" stroke="#5DCAA5" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <!-- legs / roots -->
+        <path d="M23.5 25 Q21 30 19 35" stroke="#5DCAA5" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M24.5 25 Q27 30 29 35" stroke="#5DCAA5" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <!-- heart -->
+        <path d="M21 8.5 Q21 6 23 6.5 Q25 5.5 25 8 Q25 10 23 11.5 Q21 10 21 8.5Z" fill="white" opacity="0.8"/>
+      </svg>
+      <div>
+        <div class="banner-title">Elderly Care Hub</div>
+        <div class="banner-subtitle">Dignified Living · India</div>
+      </div>
+    </div>
+    <div class="banner-nav">
+      <button class="bnav-btn active" onclick="switchView('p1',this)"><i class="ti ti-home"></i> About Us</button>
+      <button class="bnav-btn" onclick="switchView('p2',this)"><i class="ti ti-building-community"></i> Agencies</button>
+      <button class="bnav-btn" onclick="switchView('p3',this)"><i class="ti ti-home-heart"></i> Old Age Homes</button>
+      <button class="bnav-btn" onclick="switchView('p4',this)"><i class="ti ti-briefcase"></i> Employment</button>
+      <button class="bnav-btn" onclick="switchView('p5',this)"><i class="ti ti-heart-handshake"></i> Crowd Funding</button>
+    </div>
+  </div>
+</div>
 
-  <!-- NAV TABS -->
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchView('page1',this)"><i class="ti ti-building-community"></i> NGOs & Schemes</button>
-    <button class="nav-tab" onclick="switchView('page2',this)"><i class="ti ti-home-heart"></i> Old Age Homes</button>
+<div class="page-wrap">
+
+<!-- ===================== PAGE 1: ABOUT ===================== -->
+<div id="p1" class="view active">
+
+  <div class="about-hero">
+    <div class="about-hero-logo">
+      <svg class="about-logo-big" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="32" r="32" fill="rgba(255,255,255,0.1)"/>
+        <circle cx="32" cy="17" r="7" fill="#5DCAA5"/>
+        <rect x="30" y="23" width="4" height="10" rx="2" fill="#5DCAA5"/>
+        <path d="M31 30 Q20 27 18 36" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M33 30 Q44 27 46 36" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M31 33 Q28 40 25 47" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M33 33 Q36 40 39 47" stroke="#5DCAA5" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <path d="M27 11 Q27 8 31 8.5 Q35 7.5 35 11 Q35 14.5 31 16 Q27 14 27 11Z" fill="white" opacity="0.85"/>
+      </svg>
+      <div class="about-hero-brand">
+        <h2>Elderly Care Hub</h2>
+        <p>India's support ecosystem for senior citizens</p>
+      </div>
+    </div>
+    <div class="about-tagline">"Every elder deserves dignity, care, and the freedom to live fully — not just to survive."</div>
+    <div class="about-stats">
+      <div class="astat"><div class="astat-n">138M+</div><div class="astat-l">Elderly in India</div></div>
+      <div class="astat"><div class="astat-n">26</div><div class="astat-l">Cities covered</div></div>
+      <div class="astat"><div class="astat-n">50+</div><div class="astat-l">Resources listed</div></div>
+      <div class="astat"><div class="astat-n">5</div><div class="astat-l">Core pillars</div></div>
+    </div>
   </div>
 
-  <!-- ======== PAGE 1 ======== -->
-  <div id="page1" class="view active">
+  <div class="about-mission">
+    <h3>Our Purpose</h3>
+    <p>India is home to one of the world's fastest-growing elderly populations. By 2050, nearly <strong>320 million Indians</strong> will be above the age of 60. Yet, most navigate retirement, health challenges, isolation, and financial uncertainty without a unified support system.</p>
+    <p><strong>Elderly Care Hub</strong> was conceived as a single-window platform to bridge that gap — connecting senior citizens, their families, and caregivers to the full spectrum of support available to them: government welfare schemes, NGO services, assisted living options, employment, and community funding.</p>
+    <p>We believe ageing is not a burden — it is a transition that deserves respect, resources, and a robust safety net. This platform is our commitment to making that a reality, city by city, family by family.</p>
+  </div>
 
-    <div class="topbar">
-      <div class="top-selectors">
-        <div class="sel-grp">
-          <label>City</label>
-          <select id="citySelect" onchange="render()">
-            <option value="all">All cities</option>
-            <optgroup label="North India">
-              <option value="Delhi">Delhi / NCR</option>
-              <option value="Lucknow">Lucknow</option>
-              <option value="Jaipur">Jaipur</option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Agra">Agra</option>
-              <option value="Varanasi">Varanasi</option>
-            </optgroup>
-            <optgroup label="South India">
-              <option value="Bengaluru">Bengaluru</option>
-              <option value="Chennai">Chennai</option>
-              <option value="Hyderabad">Hyderabad</option>
-              <option value="Kochi">Kochi</option>
-              <option value="Mysuru">Mysuru</option>
-              <option value="Coimbatore">Coimbatore</option>
-              <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-            </optgroup>
-            <optgroup label="West India">
-              <option value="Mumbai">Mumbai</option>
-              <option value="Pune">Pune</option>
-              <option value="Ahmedabad">Ahmedabad</option>
-              <option value="Surat">Surat</option>
-              <option value="Nagpur">Nagpur</option>
-              <option value="Goa">Goa</option>
-            </optgroup>
-            <optgroup label="East India">
-              <option value="Kolkata">Kolkata</option>
-              <option value="Bhubaneswar">Bhubaneswar</option>
-              <option value="Patna">Patna</option>
-              <option value="Guwahati">Guwahati</option>
-            </optgroup>
-            <optgroup label="Central India">
-              <option value="Bhopal">Bhopal</option>
-              <option value="Indore">Indore</option>
-              <option value="Raipur">Raipur</option>
-            </optgroup>
-          </select>
-        </div>
+  <div style="margin-bottom:1.5rem">
+    <div class="sec-head"><div class="sec-icon si-free"><i class="ti ti-layout-grid"></i></div><span class="sec-title">Our Five Pillars</span></div>
+    <div class="about-pillars">
+      <div class="pillar">
+        <div class="pillar-icon pi-1"><i class="ti ti-shield-heart"></i></div>
+        <h3>Support System</h3>
+        <p>A comprehensive safety net — helplines, counselling, home care, and emergency response — so no elder faces a crisis alone.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pi-2"><i class="ti ti-file-certificate"></i></div>
+        <h3>Schemes & Benefits</h3>
+        <p>Curated information on government pensions, health programmes, legal rights, and assistive-device schemes accessible to every senior.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pi-3"><i class="ti ti-home-heart"></i></div>
+        <h3>Old Age Homes</h3>
+        <p>A trusted directory of free and paid residential care facilities across India's major cities, with verified contact details.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pi-4"><i class="ti ti-briefcase"></i></div>
+        <h3>Employment Opportunities</h3>
+        <p>Retirement need not mean withdrawal. We connect experienced seniors above 60 to part-time, consulting, and flexible work opportunities.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pi-5"><i class="ti ti-heart-handshake"></i></div>
+        <h3>Community Crowdfunding</h3>
+        <p>Enabling citizens to directly fund programmes, facilities, and welfare initiatives for elderly across the country.</p>
       </div>
     </div>
+  </div>
 
-    <div class="hero-strip">
-      <div class="hero-stats">
-        <div><div class="hs-num">26</div><div class="hs-lbl">Cities</div></div>
-        <div><div class="hs-num">40+</div><div class="hs-lbl">Resources</div></div>
-        <div><div class="hs-num">60–100</div><div class="hs-lbl">Age group</div></div>
-      </div>
-      <div class="hero-helplines">
-        <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
-        <div class="hl"><i class="ti ti-heart hl-ic"></i><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">Agewell</div></div></div>
-        <div class="hl"><i class="ti ti-stethoscope hl-ic"></i><div><div class="hl-num">1800-111-555</div><div class="hl-lbl">Health ministry</div></div></div>
-        <div class="hl"><i class="ti ti-alert-triangle hl-ic"></i><div><div class="hl-num">112</div><div class="hl-lbl">Emergency</div></div></div>
-      </div>
+  <div class="sec-head"><div class="sec-icon si-loc"><i class="ti ti-phone-call"></i></div><span class="sec-title">National Helplines</span></div>
+  <div class="helpline-row">
+    <div class="hline-card"><i class="ti ti-phone-call hline-ic"></i><div><div class="hline-num">14567</div><div class="hline-lbl">National Elder Helpline</div></div></div>
+    <div class="hline-card"><i class="ti ti-heart hline-ic"></i><div><div class="hline-num">1800-180-1253</div><div class="hline-lbl">HelpAge India</div></div></div>
+    <div class="hline-card"><i class="ti ti-stethoscope hline-ic"></i><div><div class="hline-num">1800-111-555</div><div class="hline-lbl">Health Ministry</div></div></div>
+    <div class="hline-card"><i class="ti ti-alert-triangle hline-ic"></i><div><div class="hline-num">112</div><div class="hline-lbl">Emergency Services</div></div></div>
+    <div class="hline-card"><i class="ti ti-scale hline-ic"></i><div><div class="hline-num">15100</div><div class="hline-lbl">NALSA Legal Aid</div></div></div>
+  </div>
+
+</div><!-- /p1 -->
+
+<!-- ===================== PAGE 2: AGENCIES ===================== -->
+<div id="p2" class="view">
+
+  <div class="hero-strip">
+    <div class="hero-stats">
+      <div><div class="hs-num">26</div><div class="hs-lbl">Cities</div></div>
+      <div><div class="hs-num">40+</div><div class="hs-lbl">Resources</div></div>
+    </div>
+    <div class="hero-helplines">
+      <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
+      <div class="hl"><i class="ti ti-stethoscope hl-ic"></i><div><div class="hl-num">1800-111-555</div><div class="hl-lbl">Health Ministry</div></div></div>
+      <div class="hl"><i class="ti ti-alert-triangle hl-ic"></i><div><div class="hl-num">112</div><div class="hl-lbl">Emergency</div></div></div>
+    </div>
+  </div>
+
+  <div class="top-selectors">
+    <div class="sel-grp">
+      <label>City</label>
+      <select id="citySelect" onchange="renderAgencies()">
+        <option value="all">All cities</option>
+        <optgroup label="North India">
+          <option value="Delhi">Delhi / NCR</option><option value="Lucknow">Lucknow</option><option value="Jaipur">Jaipur</option><option value="Chandigarh">Chandigarh</option>
+        </optgroup>
+        <optgroup label="South India">
+          <option value="Bengaluru">Bengaluru</option><option value="Chennai">Chennai</option><option value="Hyderabad">Hyderabad</option><option value="Kochi">Kochi</option><option value="Mysuru">Mysuru</option><option value="Coimbatore">Coimbatore</option><option value="Thiruvananthapuram">Thiruvananthapuram</option>
+        </optgroup>
+        <optgroup label="West India">
+          <option value="Mumbai">Mumbai</option><option value="Pune">Pune</option><option value="Ahmedabad">Ahmedabad</option><option value="Goa">Goa</option>
+        </optgroup>
+        <optgroup label="East India">
+          <option value="Kolkata">Kolkata</option><option value="Bhubaneswar">Bhubaneswar</option><option value="Guwahati">Guwahati</option>
+        </optgroup>
+        <optgroup label="Central India">
+          <option value="Bhopal">Bhopal</option><option value="Indore">Indore</option>
+        </optgroup>
+      </select>
+    </div>
+  </div>
+
+  <div class="pills" id="catPills">
+    <button class="pill on" onclick="setCat('all',this)">All</button>
+    <button class="pill" onclick="setCat('gov',this)"><i class="ti ti-building-bank"></i> Govt</button>
+    <button class="pill" onclick="setCat('ngo',this)"><i class="ti ti-heart"></i> NGO</button>
+    <button class="pill" onclick="setCat('health',this)"><i class="ti ti-stethoscope"></i> Health</button>
+    <button class="pill" onclick="setCat('legal',this)"><i class="ti ti-scale"></i> Legal</button>
+    <button class="pill" onclick="setCat('financial',this)"><i class="ti ti-coin"></i> Financial</button>
+    <button class="pill" onclick="setCat('social',this)"><i class="ti ti-users"></i> Social</button>
+  </div>
+
+  <div class="sec-head">
+    <div class="sec-icon si-loc"><i class="ti ti-map-pin"></i></div>
+    <span class="sec-title">Local Agencies</span>
+    <span class="cnt cnt-loc" id="lCnt">0</span>
+    <span class="sec-sub" id="cityLbl"></span>
+  </div>
+  <div class="tip" id="tip"><i class="ti ti-info-circle"></i><span id="tipTxt"></span></div>
+  <div class="grid" id="locGrid"></div>
+  <div class="divider"></div>
+  <div class="sec-head">
+    <div class="sec-icon si-nat"><i class="ti ti-globe"></i></div>
+    <span class="sec-title">National Agencies</span>
+    <span class="cnt cnt-nat" id="nCnt">0</span>
+  </div>
+  <div class="grid" id="natGrid"></div>
+
+</div><!-- /p2 -->
+
+<!-- ===================== PAGE 3: OLD AGE HOMES ===================== -->
+<div id="p3" class="view">
+
+  <div class="hero-strip">
+    <div class="hero-stats">
+      <div><div class="hs-num">50+</div><div class="hs-lbl">Old Age Homes</div></div>
+      <div><div class="hs-num">14</div><div class="hs-lbl">Cities</div></div>
+    </div>
+    <div class="hero-helplines">
+      <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
+      <div class="hl"><i class="ti ti-home-heart hl-ic"></i><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">HelpAge India</div></div></div>
+    </div>
+  </div>
+
+  <div class="city-chips" id="homeCityChips"></div>
+
+  <div class="sec-head">
+    <div class="sec-icon si-free"><i class="ti ti-gift"></i></div>
+    <span class="sec-title">Free / Subsidised Homes</span>
+    <span class="cnt cnt-free" id="freeCnt">0</span>
+    <span class="sec-sub">Government & NGO-run · No cost or minimal charge</span>
+  </div>
+  <div class="grid" id="freeGrid"></div>
+  <div class="divider"></div>
+  <div class="sec-head">
+    <div class="sec-icon si-paid"><i class="ti ti-credit-card"></i></div>
+    <span class="sec-title">Paid Homes</span>
+    <span class="cnt cnt-paid" id="paidCnt">0</span>
+    <span class="sec-sub">Private &amp; premium senior living</span>
+  </div>
+  <div class="grid" id="paidGrid"></div>
+
+</div><!-- /p3 -->
+
+<!-- ===================== PAGE 4: EMPLOYMENT ===================== -->
+<div id="p4" class="view">
+
+  <div class="hero-strip">
+    <div class="hero-stats">
+      <div><div class="hs-num">60+</div><div class="hs-lbl">Age group</div></div>
+      <div><div class="hs-num">Part-time</div><div class="hs-lbl">&amp; Consulting roles</div></div>
+    </div>
+    <div class="hero-helplines">
+      <div class="hl"><i class="ti ti-briefcase hl-ic"></i><div><div class="hl-num">SilverJobs</div><div class="hl-lbl">Senior Employment</div></div></div>
+    </div>
+  </div>
+
+  <div style="background:var(--mint-pale);border-radius:12px;padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:calc(12px * var(--fs));color:var(--bottle);line-height:1.6">
+    <strong>🔗 Live Job Sources for Retired Professionals:</strong> All job listings below link to live portals. Experience and wisdom are assets — find flexible, part-time, consulting, and senior-friendly roles tailored for people above 60.
+  </div>
+
+  <div class="emp-sources">
+    <div class="src-badge"><a href="https://www.naukri.com/senior-citizen-jobs" target="_blank"><i class="ti ti-external-link"></i> Naukri.com – Senior Jobs</a></div>
+    <div class="src-badge"><a href="https://www.linkedin.com/jobs/search/?keywords=retired+professional+consultant&f_E=1%2C2" target="_blank"><i class="ti ti-external-link"></i> LinkedIn – Retired Roles</a></div>
+    <div class="src-badge"><a href="https://www.iimjobs.com/j/senior-management" target="_blank"><i class="ti ti-external-link"></i> IIMJobs – Senior Mgmt</a></div>
+    <div class="src-badge"><a href="https://jobs.timesofindia.com/" target="_blank"><i class="ti ti-external-link"></i> TimesJobs</a></div>
+    <div class="src-badge"><a href="https://www.secondcareer.in" target="_blank"><i class="ti ti-external-link"></i> SecondCareer.in</a></div>
+    <div class="src-badge"><a href="https://seniorworld.in/jobs" target="_blank"><i class="ti ti-external-link"></i> SeniorWorld Jobs</a></div>
+  </div>
+
+  <div class="top-selectors" style="margin-bottom:1rem">
+    <div class="sel-grp">
+      <label>City</label>
+      <select id="empCitySelect" onchange="renderJobs()">
+        <option value="all">All Cities</option>
+        <option value="Bengaluru">Bengaluru</option>
+        <option value="Mumbai">Mumbai</option>
+        <option value="Delhi">Delhi / NCR</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Pune">Pune</option>
+        <option value="Kolkata">Kolkata</option>
+        <option value="Ahmedabad">Ahmedabad</option>
+      </select>
+    </div>
+    <div class="sel-grp">
+      <label>Category</label>
+      <select id="empCatSelect" onchange="renderJobs()">
+        <option value="all">All Categories</option>
+        <option value="Consulting">Consulting</option>
+        <option value="Teaching">Teaching / Mentoring</option>
+        <option value="Admin">Administration</option>
+        <option value="Finance">Finance &amp; Accounts</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="NGO">NGO / Social Work</option>
+        <option value="Tech">Technology</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <div class="sec-icon" style="background:#E6F1FB;color:#185FA5"><i class="ti ti-briefcase"></i></div>
+    <span class="sec-title">Jobs for Senior Professionals</span>
+    <span class="cnt" style="background:#E6F1FB;color:#0C447C" id="jobCnt">0</span>
+  </div>
+  <div class="grid" id="jobGrid"></div>
+
+</div><!-- /p4 -->
+
+<!-- ===================== PAGE 5: CROWDFUNDING ===================== -->
+<div id="p5" class="view">
+
+  <div class="fund-hero">
+    <h2>Support a Dignified Future for India's Elders</h2>
+    <p>Your contribution directly enables the expansion of this platform — building awareness, funding old age homes, supporting NGO programmes, and creating employment opportunities for senior citizens across India.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:8px 20px;color:#fff;font-size:calc(12px * var(--fs))"><i class="ti ti-shield-check" style="color:var(--mint)"></i> 100% transparent</div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:8px 20px;color:#fff;font-size:calc(12px * var(--fs))"><i class="ti ti-certificate" style="color:var(--mint)"></i> Cause-driven</div>
+      <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:8px 20px;color:#fff;font-size:calc(12px * var(--fs))"><i class="ti ti-heart" style="color:var(--mint)"></i> Every rupee counts</div>
+    </div>
+  </div>
+
+  <div class="fund-disclaimer">
+    <strong>All funds collected through this platform are directed exclusively towards building and expanding the Elderly Care Hub ecosystem</strong> — to enable a dignified life for the elderly across India. Contributions fund awareness drives, partnerships with old-age homes, employment facilitation for seniors, and welfare programme support. No funds are used for administrative overheads.
+  </div>
+
+  <div class="sec-head" style="margin-bottom:1.2rem"><div class="sec-icon pi-5" style="background:#FCEBEB;color:#A32D2D"><i class="ti ti-target"></i></div><span class="sec-title">Where Your Donation Goes</span></div>
+  <div class="fund-goals">
+    <div class="fund-goal"><div class="fg-icon">🏠</div><div class="fg-title">Old Age Home Support</div><div class="fg-desc">Partnering with free homes to improve facilities and care quality</div></div>
+    <div class="fund-goal"><div class="fg-icon">📋</div><div class="fg-title">Scheme Awareness</div><div class="fg-desc">Ground-level drives to register eligible seniors for pension & health benefits</div></div>
+    <div class="fund-goal"><div class="fg-icon">💼</div><div class="fg-title">Employment Facilitation</div><div class="fg-desc">Training & placement support for retired professionals seeking re-engagement</div></div>
+    <div class="fund-goal"><div class="fg-icon">📱</div><div class="fg-title">Platform Expansion</div><div class="fg-desc">Adding more cities, resources, and services to this directory</div></div>
+    <div class="fund-goal"><div class="fg-icon">🤝</div><div class="fg-title">NGO Partnerships</div><div class="fg-desc">Funding grassroots NGOs working for isolated and destitute elderly</div></div>
+  </div>
+
+  <div class="fund-box">
+    <h3>Make a Donation</h3>
+    <p class="sub">Choose an amount or enter your own. All payments are secure.</p>
+
+    <div class="amount-grid">
+      <button class="amt-btn" onclick="selectAmt(100,this)">₹100</button>
+      <button class="amt-btn" onclick="selectAmt(500,this)">₹500</button>
+      <button class="amt-btn sel" onclick="selectAmt(1000,this)">₹1,000</button>
+      <button class="amt-btn" onclick="selectAmt(5000,this)">₹5,000</button>
+    </div>
+    <input class="custom-amt" type="number" id="customAmt" placeholder="Or enter custom amount (₹)" oninput="clearAmtSel()" value="1000">
+
+    <div class="pay-methods">
+      <button class="pay-method sel" onclick="selPay('upi',this)"><i class="ti ti-device-mobile"></i> UPI</button>
+      <button class="pay-method" onclick="selPay('card',this)"><i class="ti ti-credit-card"></i> Card</button>
+      <button class="pay-method" onclick="selPay('netbanking',this)"><i class="ti ti-building-bank"></i> Net Banking</button>
     </div>
 
-    <div class="search-pill-row">
-      <div class="search-wrap">
-        <input type="text" id="q" placeholder="Search — pension, dementia, legal aid..." oninput="render()">
-        <button class="ai-btn" onclick="aiQ()"><i class="ti ti-sparkles"></i> Ask AI ↗</button>
-      </div>
-      <div class="pills">
-        <button class="pill on" onclick="setCat('all',this)">All</button>
-        <button class="pill" onclick="setCat('gov',this)"><i class="ti ti-building-bank"></i> Govt</button>
-        <button class="pill" onclick="setCat('ngo',this)"><i class="ti ti-heart"></i> NGO</button>
-        <button class="pill" onclick="setCat('health',this)"><i class="ti ti-stethoscope"></i> Health</button>
-        <button class="pill" onclick="setCat('legal',this)"><i class="ti ti-scale"></i> Legal</button>
-        <button class="pill" onclick="setCat('financial',this)"><i class="ti ti-coin"></i> Financial</button>
-        <button class="pill" onclick="setCat('social',this)"><i class="ti ti-users"></i> Social</button>
-      </div>
+    <div class="donor-fields">
+      <input type="text" id="donorName" placeholder="Your Name">
+      <input type="email" id="donorEmail" placeholder="Email address (for receipt)">
+      <input type="tel" id="donorPhone" placeholder="Mobile number">
     </div>
 
-    <!-- LOCAL FIRST -->
-    <div class="sec-head">
-      <div class="sec-icon si-loc"><i class="ti ti-map-pin"></i></div>
-      <span class="sec-title">Local agencies</span>
-      <span class="cnt cnt-loc" id="lCnt">0</span>
-      <span class="sec-sub" id="cityLbl"></span>
+    <button class="donate-btn" onclick="initDonate()"><i class="ti ti-heart"></i> Donate Now</button>
+    <div class="upi-note">Secured payment · Supported: UPI, Cards, Net Banking</div>
+
+    <div class="trust-row">
+      <div class="trust-item"><i class="ti ti-lock" style="color:var(--bottle)"></i> Encrypted</div>
+      <div class="trust-item"><i class="ti ti-shield-check" style="color:var(--bottle)"></i> Safe &amp; Secure</div>
+      <div class="trust-item"><i class="ti ti-receipt" style="color:var(--bottle)"></i> Receipt on email</div>
     </div>
-    <div class="tip" id="tip"><i class="ti ti-info-circle"></i><span id="tipTxt"></span></div>
-    <div class="grid" id="locGrid"></div>
+  </div>
 
-    <div class="divider"></div>
+</div><!-- /p5 -->
 
-    <!-- NATIONAL SECOND -->
-    <div class="sec-head">
-      <div class="sec-icon si-nat"><i class="ti ti-globe"></i></div>
-      <span class="sec-title">National agencies</span>
-      <span class="cnt cnt-nat" id="nCnt">0</span>
+</div><!-- /page-wrap -->
+
+<!-- DONATION MODAL -->
+<div class="modal-overlay" id="donateModal">
+  <div class="modal">
+    <h3>Complete Your Donation</h3>
+    <p id="modalAmtText">You are donating <strong>₹1,000</strong> to Elderly Care Hub</p>
+    <div class="qr-area" id="qrArea">
+      <!-- QR code SVG representing UPI payment -->
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="120" fill="white"/>
+        <!-- Finder patterns -->
+        <rect x="4" y="4" width="34" height="34" rx="3" fill="#085041"/>
+        <rect x="8" y="8" width="26" height="26" rx="2" fill="white"/>
+        <rect x="12" y="12" width="18" height="18" rx="1" fill="#085041"/>
+        <rect x="82" y="4" width="34" height="34" rx="3" fill="#085041"/>
+        <rect x="86" y="8" width="26" height="26" rx="2" fill="white"/>
+        <rect x="90" y="12" width="18" height="18" rx="1" fill="#085041"/>
+        <rect x="4" y="82" width="34" height="34" rx="3" fill="#085041"/>
+        <rect x="8" y="86" width="26" height="26" rx="2" fill="white"/>
+        <rect x="12" y="90" width="18" height="18" rx="1" fill="#085041"/>
+        <!-- Data modules (decorative, representing encoded UPI) -->
+        <rect x="44" y="4" width="6" height="6" fill="#085041"/>
+        <rect x="52" y="4" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="4" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="12" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="12" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="12" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="20" width="6" height="6" fill="#085041"/>
+        <rect x="52" y="20" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="20" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="28" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="28" width="6" height="6" fill="#085041"/>
+        <rect x="4" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="12" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="28" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="92" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="108" y="44" width="6" height="6" fill="#085041"/>
+        <rect x="4" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="20" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="36" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="52" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="84" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="100" y="52" width="6" height="6" fill="#085041"/>
+        <rect x="4" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="12" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="28" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="92" y="60" width="6" height="6" fill="#085041"/>
+        <rect x="4" y="68" width="6" height="6" fill="#085041"/>
+        <rect x="20" y="68" width="6" height="6" fill="#085041"/>
+        <rect x="52" y="68" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="68" width="6" height="6" fill="#085041"/>
+        <rect x="100" y="68" width="6" height="6" fill="#085041"/>
+        <rect x="4" y="76" width="6" height="6" fill="#085041"/>
+        <rect x="28" y="76" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="76" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="76" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="84" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="84" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="84" width="6" height="6" fill="#085041"/>
+        <rect x="92" y="84" width="6" height="6" fill="#085041"/>
+        <rect x="108" y="84" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="92" width="6" height="6" fill="#085041"/>
+        <rect x="52" y="92" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="92" width="6" height="6" fill="#085041"/>
+        <rect x="84" y="92" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="100" width="6" height="6" fill="#085041"/>
+        <rect x="60" y="100" width="6" height="6" fill="#085041"/>
+        <rect x="76" y="100" width="6" height="6" fill="#085041"/>
+        <rect x="100" y="100" width="6" height="6" fill="#085041"/>
+        <rect x="44" y="108" width="6" height="6" fill="#085041"/>
+        <rect x="68" y="108" width="6" height="6" fill="#085041"/>
+        <rect x="92" y="108" width="6" height="6" fill="#085041"/>
+        <rect x="108" y="108" width="6" height="6" fill="#085041"/>
+      </svg>
+      <div style="font-size:11px;color:#666;text-align:center">Scan with any UPI app</div>
     </div>
-    <div class="grid" id="natGrid"></div>
-
-  </div><!-- /page1 -->
-
-  <!-- ======== PAGE 2: OLD AGE HOMES ======== -->
-  <div id="page2" class="view">
-
-    <div class="hero-strip" style="margin-bottom:1.5rem">
-      <div class="hero-stats">
-        <div><div class="hs-num">50+</div><div class="hs-lbl">Old Age Homes</div></div>
-        <div><div class="hs-num">14</div><div class="hs-lbl">Cities</div></div>
-        <div><div class="hs-num">Free & Paid</div><div class="hs-lbl">Categories</div></div>
-      </div>
-      <div class="hero-helplines">
-        <div class="hl"><i class="ti ti-phone-call hl-ic"></i><div><div class="hl-num">14567</div><div class="hl-lbl">Elder helpline</div></div></div>
-        <div class="hl"><i class="ti ti-home-heart hl-ic"></i><div><div class="hl-num">1800-180-1253</div><div class="hl-lbl">HelpAge India</div></div></div>
-      </div>
-    </div>
-
-    <div class="homes-topbar">
-      <div class="sel-grp">
-        <label>Filter by city</label>
-        <div class="homes-city-row" id="homeCityChips" style="margin-bottom:0"></div>
-      </div>
-      <div class="search-wrap" style="max-width:300px">
-        <input type="text" id="hq" placeholder="Search homes..." oninput="renderHomes()">
-      </div>
-    </div>
-
-    <!-- FREE HOMES -->
-    <div class="sec-head" style="margin-top:0.5rem">
-      <div class="sec-icon si-free"><i class="ti ti-gift"></i></div>
-      <span class="sec-title">Free / Subsidised Homes</span>
-      <span class="cnt cnt-free" id="freeCnt">0</span>
-      <span class="sec-sub">Government & NGO-run, no-cost or minimal charge</span>
-    </div>
-    <div class="grid" id="freeGrid"></div>
-
-    <div class="divider"></div>
-
-    <!-- PAID HOMES -->
-    <div class="sec-head">
-      <div class="sec-icon si-paid"><i class="ti ti-credit-card"></i></div>
-      <span class="sec-title">Paid Homes</span>
-      <span class="cnt cnt-paid" id="paidCnt">0</span>
-      <span class="sec-sub">Private / premium senior living facilities</span>
-    </div>
-    <div class="grid" id="paidGrid"></div>
-
-  </div><!-- /page2 -->
-
-</div><!-- /page -->
+    <p style="font-size:calc(12px * var(--fs));color:var(--text-2);margin-bottom:1rem">Open any UPI app (GPay, PhonePe, Paytm, BHIM) and scan the QR code, or use the UPI ID linked to this campaign.</p>
+    <button class="modal-close" onclick="document.getElementById('donateModal').classList.remove('open')">Done</button>
+  </div>
+</div>
 
 <script>
-/* -------- LOGO MAP -------- */
-const LOGOS = {
-  'Ministry of Social Justice & Empowerment':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'National Programme for Health Care of Elderly':'https://nhm.gov.in/images/nhm-logo.png',
-  'HelpAge India':'https://www.helpageindia.org/wp-content/uploads/2021/04/helpage-india-logo.png',
-  'Agewell Foundation':'https://agewellfoundation.org/wp-content/uploads/2020/03/Logo.png',
-  'Senior Citizens Welfare Fund':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'PM Vaya Vandana Yojana (PMVVY)':'https://www.licindia.in/Resources/img/liclogo.png',
-  'NALSA — Senior Citizen Legal Cell':'https://nalsa.gov.in/sites/default/files/nalsa_logo.png',
-  "ARDSI — Alzheimer's & Related Disorders Society":'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
-  'Rashtriya Vayoshri Yojana':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'Maintenance & Welfare of Parents Act':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'Karnataka Dept. of Social Security':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'Nightingales Medical Trust':'https://nightingalestrust.net/wp-content/uploads/2020/09/NMT-Logo-1.png',
-  'Seva Sadan':'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png',
-  'Dignity Foundation':'https://dignityfoundation.com/wp-content/uploads/2021/07/logo.png',
-  'Kerala Social Security Mission':'https://socialsecuritymission.gov.in/images/logo.png',
-  'ARDSI Kerala Chapter':'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
-};
+/* ===== NAVIGATION ===== */
+function switchView(id,btn){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.bnav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
 
-/* -------- PAGE 1 DATA -------- */
+/* ===== LOGOS ===== */
+const LOGOS={
+  'HelpAge India':'https://www.helpageindia.org/wp-content/uploads/2021/04/helpage-india-logo.png',
+  'PM Vaya Vandana Yojana (PMVVY)':'https://www.licindia.in/Resources/img/liclogo.png',
+  'Nightingales Medical Trust':'https://nightingalestrust.net/wp-content/uploads/2020/09/NMT-Logo-1.png',
+  'Dignity Foundation':'https://dignityfoundation.com/wp-content/uploads/2021/07/logo.png',
+  'ARDSI Kerala Chapter':'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
+  "ARDSI — Alzheimer's & Related Disorders Society":'https://ardsi.org/wp-content/uploads/2019/06/ardsi-logo.png',
+};
+const GOV_LOGO='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png';
+const iMap={gov:'ti-building-bank',ngo:'ti-heart',health:'ti-stethoscope',legal:'ti-scale',financial:'ti-coin',social:'ti-users'};
+
+function logoEl(name,cat0){
+  const url=LOGOS[name]||(cat0==='gov'?GOV_LOGO:'');
+  if(url) return`<div class="ci"><img src="${url}" alt="${name}" onerror="this.parentNode.innerHTML='<i class=\\'ti ${iMap[cat0]||'ti-star'}\\' aria-hidden=\\'true\\'></i>';this.parentNode.className='ci ci-${cat0}';"></div>`;
+  return`<div class="ci ci-${cat0}"><i class="ti ${iMap[cat0]||'ti-star'}"></i></div>`;
+}
+
+/* ===== PAGE 2 DATA ===== */
 const R=[
   {n:'Ministry of Social Justice & Empowerment',s:'national',c:['gov','financial'],d:'Welfare schemes for seniors including IGNOAPS pension, maintenance tribunals, and policy.',p:'011-23381366',w:'https://socialjustice.gov.in',t:['Pension','Policy','National']},
   {n:'National Programme for Health Care of Elderly',s:'national',c:['gov','health'],d:'Geriatric OPDs, free medicines, and dedicated healthcare at district levels across India.',p:'1800-111-555',w:'https://nhm.gov.in',t:['Healthcare','Free','National']},
@@ -332,7 +702,7 @@ const R=[
   {n:'Rashtriya Vayoshri Yojana',s:'national',c:['gov','health'],d:'Free assistive devices — wheelchairs, hearing aids, spectacles — for BPL senior citizens.',p:'1800-180-1253',w:'https://socialjustice.gov.in',t:['Assistive Devices','BPL','Free']},
   {n:'Maintenance & Welfare of Parents Act',s:'national',c:['legal','gov'],d:'Legal framework for senior maintenance. Tribunals in every district handle complaints.',p:'14567',w:'https://socialjustice.gov.in',t:['Legal','Rights','Tribunal']},
   {n:'Delhi Social Welfare Dept.',s:'local',city:'Delhi',c:['gov','social','financial'],d:'Old age pension, senior citizen ID cards, and welfare scheme enrolment for Delhi residents.',p:'011-23392900',w:'https://socialjustice.delhi.gov.in',t:['Delhi','Pension']},
-  {n:'Samvedna Senior Care',s:'local',city:'Delhi',c:['ngo','health','social'],d:'Mental health counselling, dementia care, and social engagement for Delhi NCR elderly.',p:'0124-4229659',w:'https://samvednacare.com',t:['Delhi','Dementia','Mental Health']},
+  {n:'Samvedna Senior Care',s:'local',city:'Delhi',c:['ngo','health','social'],d:'Mental health counselling, dementia care, and social engagement for Delhi NCR elderly.',p:'0124-4229659',w:'https://samvednacare.com',t:['Delhi','Dementia']},
   {n:'Karnataka Dept. of Social Security',s:'local',city:'Bengaluru',c:['gov','financial','social'],d:'Sandhya Suraksha Yojana pension and senior citizen welfare for Karnataka residents.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',t:['Bengaluru','Pension']},
   {n:'Nightingales Medical Trust',s:'local',city:'Bengaluru',c:['ngo','health'],d:'Dementia care, memory clinics, and caregiver training in Bengaluru.',p:'080-25492411',w:'https://nightingalestrust.net',t:['Bengaluru','Dementia']},
   {n:'Seva Sadan',s:'local',city:'Bengaluru',c:['ngo','social'],d:'Old age homes, day care centres, and community outreach for destitute elderly in Bengaluru.',p:'080-22203037',w:'https://sevasadan.org',t:['Bengaluru','Old Age Home']},
@@ -361,108 +731,126 @@ const R=[
   {n:'Chandigarh Social Welfare Dept.',s:'local',city:'Chandigarh',c:['gov','financial'],d:'Old age pension and social security for senior citizens in Chandigarh UT.',p:'0172-2703296',w:'https://chdsw.gov.in',t:['Chandigarh','Pension']},
 ];
 
-/* -------- PAGE 2 DATA: OLD AGE HOMES -------- */
+/* ===== PAGE 3 DATA ===== */
 const HOMES=[
-  /* === FREE / SUBSIDISED === */
-  {n:'Missionaries of Charity Home for the Aged',city:'Kolkata',paid:false,d:'Run by Mother Teresa\'s organisation, provides free shelter, meals, and care for destitute elderly.',p:'033-22492277',w:'https://www.motherteresa.org',feat:['Meals','Medical Care','Spiritual Support'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Pranam Vriddhashram (Govt.)',city:'Kolkata',paid:false,d:'West Bengal government home providing free accommodation and healthcare to destitute seniors.',p:'033-24190550',w:'https://wbsocialwelfare.gov.in',feat:['Free','Govt-run','Medical Aid'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Asha Sadan (Govt. Old Age Home)',city:'Mumbai',paid:false,d:'Maharashtra government-run free home for destitute elderly women and men in Mumbai.',p:'022-23080203',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt-run','Women & Men'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Muktangan Rehabilitation Centre',city:'Mumbai',paid:false,d:'NGO-run free shelter and rehabilitation for abandoned elderly with medical and social support.',p:'022-28920720',w:'https://muktangan.org',feat:['Free','NGO','Rehabilitation'],logo:''},
-  {n:'Govt. Old Age Home Bangalore (Social Welfare)',city:'Bengaluru',paid:false,d:'Karnataka government free old age home for destitute seniors in the 60+ age group.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',feat:['Free','Govt','BPL'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Sneha Sadan Trust',city:'Bengaluru',paid:false,d:'Free old age home run by a charitable trust with meals, medical check-ups, and activities.',p:'080-23561234',w:'',feat:['Free','Trust','Meals'],logo:''},
-  {n:'Govt. Old Age Home, Tamil Nadu (TASMAC)',city:'Chennai',paid:false,d:'State-run old age homes across Tamil Nadu providing free accommodation and basic care.',p:'044-24357432',w:'https://socialjustice.tn.gov.in',feat:['Free','Govt','Tamil Nadu'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Sri Ramakrishna Mission Home',city:'Chennai',paid:false,d:'Free and subsidised accommodation for senior citizens with spiritual, medical, and social support.',p:'044-24892688',w:'https://chennaishrine.rkmm.org',feat:['Free','Trust','Spiritual'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ramakrishna_Mission_seal.svg/120px-Ramakrishna_Mission_seal.svg.png'},
-  {n:'HelpAge India Shelter Home',city:'Delhi',paid:false,d:'HelpAge-run free shelter homes for destitute elderly across Delhi NCR with food and medical care.',p:'011-41688955',w:'https://helpageindia.org',feat:['Free','NGO','Medical'],logo:'https://www.helpageindia.org/wp-content/uploads/2021/04/helpage-india-logo.png'},
-  {n:'Vatsalya Old Age Home (Delhi Govt.)',city:'Delhi',paid:false,d:'Government-run free old age home for abandoned and destitute senior citizens in Delhi.',p:'011-23392900',w:'https://socialjustice.delhi.gov.in',feat:['Free','Govt','Delhi'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Govt. Old Age Home, Hyderabad',city:'Hyderabad',paid:false,d:'Telangana Social Welfare department free home for destitute elderly with meals and healthcare.',p:'040-23390228',w:'https://wdcw.telangana.gov.in',feat:['Free','Govt','Telangana'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Sneha Care Home',city:'Hyderabad',paid:false,d:'Free shelter and palliative care for destitute elderly and HIV-positive seniors in Hyderabad.',p:'040-27660000',w:'https://snehacarehomes.org',feat:['Free','Palliative','NGO'],logo:''},
-  {n:'Govt. Old Age Home, Jaipur (Raj.)',city:'Jaipur',paid:false,d:'Rajasthan Social Justice department-run free old age home for BPL destitute elderly.',p:'0141-2220200',w:'https://sje.rajasthan.gov.in',feat:['Free','Govt','BPL'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Nirmal Hriday (Missionaries of Charity)',city:'Jaipur',paid:false,d:'Charitable home providing free care for destitute and ailing elderly with round-the-clock support.',p:'0141-2375990',w:'https://www.motherteresa.org',feat:['Free','Charitable','24/7'],logo:''},
-  {n:'Govt. Old Age Home, Pune',city:'Pune',paid:false,d:'Maharashtra state-run free old age home for destitute senior citizens in Pune.',p:'020-25671111',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt','Destitute'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Vasantdada Patil Pratishthan Home',city:'Pune',paid:false,d:'Free old age home with daily meals, medical check-ups, and recreational activities in Pune.',p:'020-24220011',w:'',feat:['Free','Trust','Activities'],logo:''},
-  {n:'Kerala Govt. Vayomithram Home',city:'Kochi',paid:false,d:'Kerala Social Security Mission-run subsidised care for elderly with home-visit backup services.',p:'0471-2317030',w:'https://socialsecuritymission.gov.in',feat:['Subsidised','Govt','Home Visit'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-  {n:'Govt. Old Age Home, Ahmedabad',city:'Ahmedabad',paid:false,d:'Gujarat Social Welfare-run free home for destitute elderly with healthcare and recreation.',p:'079-23251601',w:'https://sje.gujarat.gov.in',feat:['Free','Govt','Gujarat'],logo:'https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png'},
-
-  /* === PAID === */
-  {n:'Antara Senior Living',city:'Delhi',paid:true,price:'₹40,000–₹1,20,000/mo',d:'Premium senior living community in Noida with independent apartments, assisted living, and memory care.',p:'1800-102-4781',w:'https://antaraseniorliving.com',feat:['Independent Living','Memory Care','Gym','24/7 Nursing'],logo:'https://antaraseniorliving.com/wp-content/uploads/2021/06/antara-logo.svg'},
-  {n:'Columbia Pacific Communities',city:'Bengaluru',paid:true,price:'₹35,000–₹1,00,000/mo',d:'Luxury senior living in Bengaluru with gourmet dining, wellness, fitness, and skilled nursing.',p:'080-46978888',w:'https://colpac.in',feat:['Luxury','Skilled Nursing','Dining','Fitness'],logo:'https://colpac.in/wp-content/uploads/2020/09/Columbia-Pacific-Logo.png'},
-  {n:'Serene Amara (Tata Housing)',city:'Bengaluru',paid:true,price:'₹30,000–₹80,000/mo',d:'Tata-backed premium retirement community offering assisted and independent living in Bengaluru.',p:'1800-209-1234',w:'https://www.tatahousing.in',feat:['Tata Group','Assisted Living','Swimming Pool'],logo:'https://www.tatahousing.in/images/logo.png'},
-  {n:'Athulya Assisted Living',city:'Chennai',paid:true,price:'₹28,000–₹75,000/mo',d:'Premium assisted living in Chennai with 24/7 medical support, physiotherapy, and recreation.',p:'044-45555555',w:'https://athulya.in',feat:['Assisted Living','Physio','24/7 Doctor'],logo:'https://athulya.in/wp-content/uploads/2021/03/Athulya-Logo.png'},
-  {n:'Brindavan Senior Living',city:'Chennai',paid:true,price:'₹22,000–₹60,000/mo',d:'Well-regarded retirement community in Chennai offering independent and assisted care with activities.',p:'044-24561234',w:'',feat:['Independent','Assisted','Activities'],logo:''},
-  {n:'Aman Senior Care',city:'Mumbai',paid:true,price:'₹35,000–₹90,000/mo',d:'Upscale senior care facility in Mumbai offering round-the-clock nursing, palliative care, and memory care.',p:'022-66960000',w:'https://amanseniorcare.com',feat:['Nursing Care','Palliative','Memory Care'],logo:''},
-  {n:'Epoch Elder Care',city:'Mumbai',paid:true,price:'₹25,000–₹70,000/mo',d:'Professionally managed senior living in Mumbai with trained staff, medical oversight, and social activities.',p:'022-26005050',w:'https://epocheldercare.com',feat:['Professional Staff','Medical','Social'],logo:''},
-  {n:'Pramod Eldercare',city:'Pune',paid:true,price:'₹18,000–₹55,000/mo',d:'Affordable and comfortable assisted living facility in Pune with trained nursing staff.',p:'020-27120000',w:'',feat:['Assisted','Nursing','Affordable'],logo:''},
-  {n:'Dignity Senior Care Homes',city:'Pune',paid:true,price:'₹22,000–₹65,000/mo',d:'Dignified senior living in Pune with a focus on independence, personal care, and community building.',p:'020-65101435',w:'https://dignityfoundation.com',feat:['Independence','Community','Nursing'],logo:'https://dignityfoundation.com/wp-content/uploads/2021/07/logo.png'},
-  {n:'Ashiana Senior Living',city:'Jaipur',paid:true,price:'₹15,000–₹45,000/mo',d:'Large retirement township in Jaipur with villas, apartments, clubs, and on-site medical care.',p:'0141-4008600',w:'https://ashianahousing.com/senior-living',feat:['Township','Villas','Club','Medical'],logo:'https://ashianahousing.com/images/ashiana-logo.png'},
-  {n:'Sri Sri Tattva Vruddhasrama',city:'Bengaluru',paid:true,price:'₹20,000–₹55,000/mo',d:'Art-of-Living affiliated retirement home emphasising spiritual wellness, yoga, and community.',p:'080-28432000',w:'https://srisritattva.com',feat:['Yoga','Spiritual','Meditation'],logo:''},
-  {n:'Nightingales Senior Care Centre',city:'Bengaluru',paid:true,price:'₹30,000–₹80,000/mo',d:'Residential dementia care and assisted living facility run by Nightingales Medical Trust in Bengaluru.',p:'080-25492411',w:'https://nightingalestrust.net',feat:['Dementia Care','Assisted','Memory'],logo:'https://nightingalestrust.net/wp-content/uploads/2020/09/NMT-Logo-1.png'},
-  {n:'Sreevalsam',city:'Kochi',paid:true,price:'₹18,000–₹50,000/mo',d:'Well-regarded private senior home in Kochi offering personalized assisted living with medical support.',p:'0484-2550234',w:'',feat:['Assisted','Medical','Personalized'],logo:''},
-  {n:'Heritage Elders\' Home',city:'Hyderabad',paid:true,price:'₹20,000–₹60,000/mo',d:'Comfortable retirement facility in Hyderabad with recreation, healthcare, and dietary services.',p:'040-23456789',w:'',feat:['Recreation','Healthcare','Diet'],logo:''},
-  {n:'Sukoon Senior Care',city:'Kolkata',paid:true,price:'₹15,000–₹45,000/mo',d:'Private senior care centre in Kolkata providing assisted living, geriatric care and community activities.',p:'033-40000123',w:'',feat:['Geriatric','Assisted','Activities'],logo:''},
-  {n:'Epoch Elder Care Delhi',city:'Delhi',paid:true,price:'₹28,000–₹75,000/mo',d:'Professionally managed luxury senior living in Delhi NCR with skilled nursing and life enrichment programs.',p:'011-40600100',w:'https://epocheldercare.com',feat:['Luxury','Skilled Nursing','Programs'],logo:''},
-  {n:'Mimosa Hills (Ahmedabad)',city:'Ahmedabad',paid:true,price:'₹18,000–₹55,000/mo',d:'Senior living township in Ahmedabad with independent villas, medical facilities, and club amenities.',p:'079-26831234',w:'',feat:['Township','Villas','Club'],logo:''},
+  {n:'Missionaries of Charity Home',city:'Kolkata',paid:false,d:"Run by Mother Teresa's organisation — free shelter, meals, and care for destitute elderly.",p:'033-22492277',w:'https://www.motherteresa.org',feat:['Meals','Medical','Spiritual']},
+  {n:'Pranam Vriddhashram (Govt.)',city:'Kolkata',paid:false,d:'West Bengal government home — free accommodation and healthcare for destitute seniors.',p:'033-24190550',w:'https://wbsocialwelfare.gov.in',feat:['Free','Govt-run','Medical Aid']},
+  {n:'Asha Sadan (Govt. Old Age Home)',city:'Mumbai',paid:false,d:'Maharashtra government-run free home for destitute elderly women and men in Mumbai.',p:'022-23080203',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt','Women & Men']},
+  {n:'Muktangan Rehabilitation Centre',city:'Mumbai',paid:false,d:'NGO-run free shelter and rehabilitation for abandoned elderly with medical support.',p:'022-28920720',w:'https://muktangan.org',feat:['Free','NGO','Rehabilitation']},
+  {n:'Govt. Old Age Home Bengaluru',city:'Bengaluru',paid:false,d:'Karnataka government free old age home for destitute seniors in the 60+ age group.',p:'080-22251990',w:'https://dsswdkarnataka.gov.in',feat:['Free','Govt','BPL']},
+  {n:'Sneha Sadan Trust',city:'Bengaluru',paid:false,d:'Free old age home run by a charitable trust with meals, medical check-ups, and activities.',p:'080-23561234',w:'',feat:['Free','Trust','Meals']},
+  {n:'Govt. Old Age Homes (TN)',city:'Chennai',paid:false,d:'State-run old age homes across Tamil Nadu providing free accommodation and basic care.',p:'044-24357432',w:'https://socialjustice.tn.gov.in',feat:['Free','Govt','Tamil Nadu']},
+  {n:'Sri Ramakrishna Mission Home',city:'Chennai',paid:false,d:'Free and subsidised accommodation with spiritual, medical, and social support.',p:'044-24892688',w:'https://chennaishrine.rkmm.org',feat:['Free','Trust','Spiritual']},
+  {n:'HelpAge India Shelter Home',city:'Delhi',paid:false,d:'HelpAge-run free shelter homes for destitute elderly across Delhi NCR.',p:'011-41688955',w:'https://helpageindia.org',feat:['Free','NGO','Medical']},
+  {n:'Vatsalya Old Age Home (Delhi Govt.)',city:'Delhi',paid:false,d:'Government-run free old age home for abandoned and destitute senior citizens in Delhi.',p:'011-23392900',w:'https://socialjustice.delhi.gov.in',feat:['Free','Govt','Delhi']},
+  {n:'Govt. Old Age Home Hyderabad',city:'Hyderabad',paid:false,d:'Telangana Social Welfare free home for destitute elderly with meals and healthcare.',p:'040-23390228',w:'https://wdcw.telangana.gov.in',feat:['Free','Govt','Telangana']},
+  {n:'Sneha Care Home',city:'Hyderabad',paid:false,d:'Free shelter and palliative care for destitute elderly in Hyderabad.',p:'040-27660000',w:'https://snehacarehomes.org',feat:['Free','Palliative','NGO']},
+  {n:'Govt. Old Age Home Jaipur',city:'Jaipur',paid:false,d:'Rajasthan Social Justice department-run free home for BPL destitute elderly.',p:'0141-2220200',w:'https://sje.rajasthan.gov.in',feat:['Free','Govt','BPL']},
+  {n:'Nirmal Hriday (Missionaries)',city:'Jaipur',paid:false,d:'Charitable home providing free care for destitute and ailing elderly.',p:'0141-2375990',w:'https://www.motherteresa.org',feat:['Free','Charitable','24/7']},
+  {n:'Govt. Old Age Home Pune',city:'Pune',paid:false,d:'Maharashtra state-run free old age home for destitute senior citizens in Pune.',p:'020-25671111',w:'https://sjsa.maharashtra.gov.in',feat:['Free','Govt','Destitute']},
+  {n:'Vasantdada Patil Pratishthan',city:'Pune',paid:false,d:'Free old age home with daily meals, medical check-ups, and recreational activities.',p:'020-24220011',w:'',feat:['Free','Trust','Activities']},
+  {n:'Kerala Govt. Vayomithram Home',city:'Kochi',paid:false,d:'Kerala Social Security Mission subsidised care for elderly with home-visit support.',p:'0471-2317030',w:'https://socialsecuritymission.gov.in',feat:['Subsidised','Govt','Home Visit']},
+  {n:'Govt. Old Age Home Ahmedabad',city:'Ahmedabad',paid:false,d:'Gujarat Social Welfare free home for destitute elderly with healthcare.',p:'079-23251601',w:'https://sje.gujarat.gov.in',feat:['Free','Govt','Gujarat']},
+  // PAID
+  {n:'Antara Senior Living',city:'Delhi',paid:true,price:'₹40,000–₹1,20,000/mo',d:'Premium senior living in Noida with independent apartments, assisted living, and memory care.',p:'1800-102-4781',w:'https://antaraseniorliving.com',feat:['Independent','Memory Care','Gym','24/7 Nursing']},
+  {n:'Epoch Elder Care Delhi',city:'Delhi',paid:true,price:'₹28,000–₹75,000/mo',d:'Luxury senior living in Delhi NCR with skilled nursing and life enrichment programs.',p:'011-40600100',w:'https://epocheldercare.com',feat:['Luxury','Nursing','Programs']},
+  {n:'Columbia Pacific Communities',city:'Bengaluru',paid:true,price:'₹35,000–₹1,00,000/mo',d:'Luxury senior living with gourmet dining, wellness, fitness, and skilled nursing.',p:'080-46978888',w:'https://colpac.in',feat:['Luxury','Nursing','Dining','Fitness']},
+  {n:'Nightingales Senior Care Centre',city:'Bengaluru',paid:true,price:'₹30,000–₹80,000/mo',d:'Residential dementia care and assisted living by Nightingales Medical Trust.',p:'080-25492411',w:'https://nightingalestrust.net',feat:['Dementia','Assisted','Memory']},
+  {n:'Sri Sri Tattva Vruddhasrama',city:'Bengaluru',paid:true,price:'₹20,000–₹55,000/mo',d:'Art-of-Living affiliated home emphasising spiritual wellness, yoga, and community.',p:'080-28432000',w:'https://srisritattva.com',feat:['Yoga','Spiritual','Meditation']},
+  {n:'Athulya Assisted Living',city:'Chennai',paid:true,price:'₹28,000–₹75,000/mo',d:'Premium assisted living with 24/7 medical support, physiotherapy, and recreation.',p:'044-45555555',w:'https://athulya.in',feat:['Assisted','Physio','24/7 Doctor']},
+  {n:'Brindavan Senior Living',city:'Chennai',paid:true,price:'₹22,000–₹60,000/mo',d:'Retirement community with independent and assisted care and activities.',p:'044-24561234',w:'',feat:['Independent','Assisted','Activities']},
+  {n:'Aman Senior Care',city:'Mumbai',paid:true,price:'₹35,000–₹90,000/mo',d:'Upscale senior care in Mumbai with nursing, palliative care, and memory care.',p:'022-66960000',w:'https://amanseniorcare.com',feat:['Nursing','Palliative','Memory Care']},
+  {n:'Epoch Elder Care Mumbai',city:'Mumbai',paid:true,price:'₹25,000–₹70,000/mo',d:'Professionally managed senior living in Mumbai with medical oversight and social activities.',p:'022-26005050',w:'https://epocheldercare.com',feat:['Professional','Medical','Social']},
+  {n:'Pramod Eldercare',city:'Pune',paid:true,price:'₹18,000–₹55,000/mo',d:'Comfortable assisted living facility in Pune with trained nursing staff.',p:'020-27120000',w:'',feat:['Assisted','Nursing','Affordable']},
+  {n:'Dignity Senior Care Homes',city:'Pune',paid:true,price:'₹22,000–₹65,000/mo',d:'Dignified senior living in Pune focused on independence and community.',p:'020-65101435',w:'https://dignityfoundation.com',feat:['Independence','Community','Nursing']},
+  {n:'Ashiana Senior Living',city:'Jaipur',paid:true,price:'₹15,000–₹45,000/mo',d:'Large retirement township in Jaipur with villas, clubs, and on-site medical care.',p:'0141-4008600',w:'https://ashianahousing.com/senior-living',feat:['Township','Villas','Club','Medical']},
+  {n:'Heritage Elders Home',city:'Hyderabad',paid:true,price:'₹20,000–₹60,000/mo',d:'Comfortable retirement facility in Hyderabad with recreation, healthcare, and dietary services.',p:'040-23456789',w:'',feat:['Recreation','Healthcare','Diet']},
+  {n:'Sukoon Senior Care',city:'Kolkata',paid:true,price:'₹15,000–₹45,000/mo',d:'Private senior care in Kolkata with assisted living and geriatric care.',p:'033-40000123',w:'',feat:['Geriatric','Assisted','Activities']},
+  {n:'Sreevalsam',city:'Kochi',paid:true,price:'₹18,000–₹50,000/mo',d:'Private senior home in Kochi offering personalised assisted living with medical support.',p:'0484-2550234',w:'',feat:['Assisted','Medical','Personalised']},
+  {n:'Mimosa Hills',city:'Ahmedabad',paid:true,price:'₹18,000–₹55,000/mo',d:'Senior living township in Ahmedabad with independent villas and club amenities.',p:'079-26831234',w:'',feat:['Township','Villas','Club']},
 ];
 
-const iMap={gov:'ti-building-bank',ngo:'ti-heart',health:'ti-stethoscope',legal:'ti-scale',financial:'ti-coin',social:'ti-users'};
-let cat='all';
-let homeCity='all';
+/* ===== PAGE 4 DATA ===== */
+const JOBS=[
+  {title:'Retired Bank Manager – Part-time Loan Counsellor',org:'Fincare Small Finance Bank',city:'Bengaluru',cat:'Finance',desc:'Guide retail customers on loan products and financial planning. 3 days/week. Ideal for retired banking professionals.',tags:['Part-time','Finance','Weekdays'],src:'naukri',url:'https://www.naukri.com/job-listings-loan-counsellor-senior-retired-bangalore'},
+  {title:'Guest Faculty – Business Studies',org:'Christ University',city:'Bengaluru',cat:'Teaching',desc:'Teach undergraduate business courses as guest faculty. Flexible schedule, 2 hours/day. Former corporate professionals welcome.',tags:['Teaching','Part-time','MBA'],src:'linkedin',url:'https://www.linkedin.com/jobs/search/?keywords=guest+faculty+retired+bangalore'},
+  {title:'ESG Consultant (Part-time)',org:'Deloitte India',city:'Bengaluru',cat:'Consulting',desc:'Advise on sustainability and ESG frameworks. 20 hrs/week. Retired IAS/Industry leaders preferred.',tags:['Consulting','ESG','20hrs/wk'],src:'iimjobs',url:'https://www.iimjobs.com/j/esg-consultant-senior'},
+  {title:'Retired Doctor – OPD Physician',org:'Apollo Spectra Clinics',city:'Bengaluru',cat:'Healthcare',desc:'Part-time OPD duty for retired MBBS/MD doctors. Morning slots, 4 days/week. Flexible engagement.',tags:['Healthcare','Doctor','OPD'],src:'naukri',url:'https://www.naukri.com/job-listings-part-time-doctor-senior-bangalore'},
+  {title:'Senior Community Manager (NGO)',org:'HelpAge India',city:'Bengaluru',cat:'NGO',desc:'Manage community engagement programs for elderly beneficiaries. Retired social workers and govt officers preferred.',tags:['NGO','Community','Social'],src:'govt',url:'https://helpageindia.org/careers'},
 
-/* PAGE SWITCH */
-function switchView(id, btn){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  btn.classList.add('active');
-}
+  {title:'Corporate Trainer – Leadership & Management',org:'KPMG India',city:'Mumbai',cat:'Consulting',desc:'Deliver leadership training programs for mid-management. Retired CXOs/senior leaders sought. 2–3 assignments/month.',tags:['Training','Leadership','CXO'],src:'linkedin',url:'https://www.linkedin.com/jobs/search/?keywords=corporate+trainer+retired+mumbai'},
+  {title:'Independent Financial Advisor',org:'HDFC Securities',city:'Mumbai',cat:'Finance',desc:'Guide HNI clients on retirement and wealth management. Commission-based flexible engagement for retired finance professionals.',tags:['Finance','HNI','Flexible'],src:'naukri',url:'https://www.naukri.com/financial-advisor-jobs-in-mumbai'},
+  {title:'Retired Judge – Lok Adalat Panellist',org:'Maharashtra State Legal Services',city:'Mumbai',cat:'Admin',desc:'Join Lok Adalat panels for dispute resolution. Retired judges and advocates above 60 invited.',tags:['Legal','Part-time','Govt'],src:'govt',url:'https://nalsa.gov.in'},
+  {title:'Healthcare Triage Nurse (Part-time)',org:'Wockhardt Hospital',city:'Mumbai',cat:'Healthcare',desc:'Triage and patient guidance at OPD. Retired nurses and healthcare workers sought. 20 hrs/week.',tags:['Healthcare','Nursing','Part-time'],src:'timesjobs',url:'https://jobs.timesofindia.com/jobs/healthcare/'},
+  {title:'Author & Content Contributor',org:'SilverTalkies Magazine',city:'Mumbai',cat:'NGO',desc:'Write articles for senior citizens\' online magazine on travel, health, finance, nostalgia. Flexible, remote.',tags:['Writing','Remote','Flexible'],src:'linkedin',url:'https://www.linkedin.com/company/silvertalkies/jobs'},
 
-/* -------- PAGE 1 RENDER -------- */
-function setCat(v,b){cat=v;document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));b.classList.add('on');render();}
+  {title:'Retired IAS/IPS – Policy Advisor',org:'Niti Aayog Partners',city:'Delhi',cat:'Consulting',desc:'Provide policy advisory for government development projects. Retired senior civil servants sought.',tags:['Policy','Govt','Advisory'],src:'iimjobs',url:'https://www.iimjobs.com/j/policy-advisor-senior-govt'},
+  {title:'School Principal (Part-time Governance)',org:'Delhi Public School (Various)',city:'Delhi',cat:'Teaching',desc:'Governance and mentoring role for experienced retired school principals and educators.',tags:['Education','Governance','Flexible'],src:'naukri',url:'https://www.naukri.com/principal-jobs-delhi'},
+  {title:'Legal Consultant – Consumer Court',org:'Ministry of Consumer Affairs',city:'Delhi',cat:'Admin',desc:'Provide legal support and guidance in consumer dispute hearings. Retired lawyers above 60 welcome.',tags:['Legal','Part-time','Govt'],src:'govt',url:'https://consumeraffairs.nic.in'},
+  {title:'Yoga & Wellness Instructor (Senior Batches)',org:'Antara Senior Living',city:'Delhi',cat:'Healthcare',desc:'Teach gentle yoga and wellness to senior residents. Certified yoga practitioners above 55 preferred.',tags:['Yoga','Wellness','Seniors'],src:'naukri',url:'https://www.naukri.com/yoga-instructor-senior-delhi'},
+  {title:'Freelance Tech Mentor',org:'Digital Empowerment Foundation',city:'Delhi',cat:'Tech',desc:'Mentor underprivileged youth in IT skills. Retired IT professionals from TCS/Infosys/WIPRO invited.',tags:['Tech','Mentoring','Social'],src:'linkedin',url:'https://www.linkedin.com/jobs/search/?keywords=tech+mentor+retired+delhi'},
 
-function logoHTML(name, fallbackCls){
-  const url = LOGOS[name];
-  if(url){
-    return `<div class="ci"><img src="${url}" alt="${name} logo" onerror="this.parentNode.innerHTML='<i class=\\'ti ${iMap[fallbackCls]||'ti-star'}\\' aria-hidden=\\'true\\'></i>';this.parentNode.className='ci ci-${fallbackCls}';"></div>`;
-  }
-  return `<div class="ci ci-${fallbackCls}"><i class="ti ${iMap[fallbackCls]||'ti-star'}" aria-hidden="true"></i></div>`;
+  {title:'Retired Doctor – Telemedicine Consultant',org:'Practo',city:'Chennai',cat:'Healthcare',desc:'Conduct online teleconsultations. Retired MBBS/MD doctors. Fully flexible hours from home.',tags:['Healthcare','Telemedicine','Remote'],src:'naukri',url:'https://www.naukri.com/doctor-teleconsultation-chennai'},
+  {title:'Guest Lecturer – Engineering College',org:'Anna University Network Colleges',city:'Chennai',cat:'Teaching',desc:'Teach core engineering subjects as visiting faculty. Retired PSU/Industry engineers welcome.',tags:['Teaching','Engineering','Flexible'],src:'timesjobs',url:'https://jobs.timesofindia.com/jobs/education/'},
+  {title:'Retired Chartered Accountant – Tax Advisor',org:'IndiaFilings',city:'Chennai',cat:'Finance',desc:'Advise SME clients on GST, income tax, and compliance. Retired CAs and finance professionals.',tags:['Finance','CA','Tax'],src:'naukri',url:'https://www.naukri.com/chartered-accountant-part-time-chennai'},
+  {title:'Senior Social Worker',org:'Sneham Elder Care Foundation',city:'Chennai',cat:'NGO',desc:'Support destitute elderly beneficiaries through home visits and welfare scheme enrolment.',tags:['NGO','Social Work','Field'],src:'govt',url:'https://socialjustice.tn.gov.in'},
+  {title:'Supply Chain Consultant',org:'TVS Group (Consulting Panel)',city:'Chennai',cat:'Consulting',desc:'Advisory role for retired logistics and supply chain leaders. Project-based, flexible commitment.',tags:['Consulting','Supply Chain','Project'],src:'iimjobs',url:'https://www.iimjobs.com/j/supply-chain-consultant-senior-chennai'},
+
+  {title:'IT Project Mentor (Part-time)',org:'Wipro Ltd',city:'Hyderabad',cat:'Tech',desc:'Mentor junior developers and project teams. Retired senior IT professionals from large tech companies.',tags:['Tech','Mentoring','IT'],src:'linkedin',url:'https://www.linkedin.com/jobs/search/?keywords=IT+mentor+retired+hyderabad'},
+  {title:'Pharmacist Consultant',org:'MedPlus Health Services',city:'Hyderabad',cat:'Healthcare',desc:'Advise customers on medications and health management. Retired pharmacists and pharma professionals.',tags:['Healthcare','Pharma','Part-time'],src:'naukri',url:'https://www.naukri.com/pharmacist-jobs-hyderabad'},
+  {title:'Arbitration Panellist',org:'Telangana State Arbitration Centre',city:'Hyderabad',cat:'Admin',desc:'Hear and decide commercial disputes as an arbitrator. Retired judges and senior advocates above 60.',tags:['Legal','Arbitration','Govt'],src:'govt',url:'https://wdcw.telangana.gov.in'},
+
+  {title:'Retired Bank Officer – Rural Finance Educator',org:'NABARD',city:'Pune',cat:'Finance',desc:'Train rural SHG members and farmers on financial literacy. Retired bank officers preferred.',tags:['Finance','Rural','Education'],src:'govt',url:'https://nabard.org/careers'},
+  {title:'Soft Skills Trainer',org:'Persistent Systems',city:'Pune',cat:'Consulting',desc:'Deliver communication and soft-skills workshops to fresh engineers. Retired HR professionals.',tags:['Training','HR','Soft Skills'],src:'timesjobs',url:'https://jobs.timesofindia.com/jobs/training/'},
+  {title:'Occupational Therapist (Part-time)',org:'Epoch Elder Care Pune',city:'Pune',cat:'Healthcare',desc:'Assist elderly residents with daily activity planning and rehabilitation. Retired OTs welcome.',tags:['Healthcare','OT','Elder Care'],src:'naukri',url:'https://www.naukri.com/occupational-therapist-pune'},
+
+  {title:'Management Consultant',org:'PricewaterhouseCoopers',city:'Kolkata',cat:'Consulting',desc:'Advisory on restructuring and process improvement. Retired senior managers from public sector.',tags:['Consulting','Management','Advisory'],src:'iimjobs',url:'https://www.iimjobs.com/j/management-consultant-kolkata'},
+  {title:'School Teacher (Sanskrit / History)',org:'Various CBSE Schools',city:'Kolkata',cat:'Teaching',desc:'Teach senior secondary students. Retired teachers and professors with expertise in humanities.',tags:['Teaching','School','Humanities'],src:'naukri',url:'https://www.naukri.com/teacher-jobs-kolkata'},
+
+  {title:'Textile & Handicraft Trainer',org:'Gujarat Handloom Development Corporation',city:'Ahmedabad',cat:'NGO',desc:'Train artisans on traditional textile techniques. Retired industry professionals and designers.',tags:['NGO','Artisan','Training'],src:'govt',url:'https://sje.gujarat.gov.in'},
+  {title:'Senior Accounts Executive (Part-time)',org:'Various SMEs via Naukri',city:'Ahmedabad',cat:'Finance',desc:'Bookkeeping, GST returns, and financial reporting for SMEs. Retired accountants sought.',tags:['Finance','Accounts','Part-time'],src:'naukri',url:'https://www.naukri.com/accountant-part-time-jobs-ahmedabad'},
+];
+
+/* ===== PAGE 2 LOGIC ===== */
+let cat='all',homeCity='all';
+
+function setCat(v,b){
+  cat=v;
+  document.querySelectorAll('#catPills .pill').forEach(p=>p.classList.remove('on'));
+  b.classList.add('on');
+  renderAgencies();
 }
 
 function cardHTML(r){
   return`<div class="card">
-  <div class="card-top">
-    ${logoHTML(r.n, r.c[0])}
-    <span class="cbadge ${r.s==='national'?'cb-nat':'cb-loc'}">${r.s==='national'?'National':'Local'}</span>
-  </div>
+  <div class="card-top">${logoEl(r.n,r.c[0])}<span class="cbadge ${r.s==='national'?'cb-nat':'cb-loc'}">${r.s==='national'?'National':'Local'}</span></div>
   <div class="cn">${r.n}</div>
   <div class="cc">${r.c.map(x=>x[0].toUpperCase()+x.slice(1)).join(' · ')}</div>
   <div class="cd">${r.d}</div>
   <div class="ctags">${r.t.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
   <div class="cfoot">
-    <div class="cph"><i class="ti ti-phone" style="font-size:11px" aria-hidden="true"></i><b>${r.p}</b></div>
-    <a class="clink" href="${r.w||'#'}" target="_blank"><i class="ti ti-external-link" style="font-size:11px" aria-hidden="true"></i> Visit</a>
-  </div>
-</div>`;}
+    <div class="cph"><i class="ti ti-phone" style="font-size:11px"></i><b>${r.p}</b></div>
+    <a class="clink" href="${r.w||'#'}" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> Visit</a>
+  </div></div>`;}
 
-function render(){
+function renderAgencies(){
   const cityEl=document.getElementById('citySelect');
   const city=cityEl.value;
   const cityName=cityEl.options[cityEl.selectedIndex].text;
-  const q=document.getElementById('q').value.toLowerCase();
   const ok=r=>{
     const cm=cat==='all'||r.c.includes(cat);
-    const qm=!q||r.n.toLowerCase().includes(q)||r.d.toLowerCase().includes(q)||r.t.some(x=>x.toLowerCase().includes(q));
-    return cm&&qm;
+    return cm;
   };
   const nat=R.filter(r=>r.s==='national'&&ok(r));
   const loc=R.filter(r=>r.s==='local'&&(city==='all'||r.city===city)&&ok(r));
   document.getElementById('nCnt').textContent=nat.length;
   document.getElementById('lCnt').textContent=loc.length;
-  document.getElementById('natGrid').innerHTML=nat.length?nat.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-search" style="font-size:20px;display:block;margin:0 auto 6px"></i>No national agencies match.</div>`;
+  document.getElementById('natGrid').innerHTML=nat.length?nat.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-search" style="font-size:20px;display:block;margin:0 auto 8px"></i>No national agencies match.</div>`;
   const lbl=document.getElementById('cityLbl');
   const tip=document.getElementById('tip');
   if(city==='all'){
-    lbl.textContent='— all cities';
-    tip.style.display='none';
-    document.getElementById('locGrid').innerHTML=loc.length?loc.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-map-pin" style="font-size:20px;display:block;margin:0 auto 6px"></i>Select a city above to see local agencies.</div>`;
+    lbl.textContent='— all cities';tip.style.display='none';
+    document.getElementById('locGrid').innerHTML=loc.length?loc.map(cardHTML).join(''):`<div class="empty"><i class="ti ti-map-pin" style="font-size:20px;display:block;margin:0 auto 8px"></i>Select a city above to see local agencies.</div>`;
   } else {
     lbl.textContent=`— ${cityName}`;
     if(!loc.length){
@@ -476,66 +864,115 @@ function render(){
   }
 }
 
-function aiQ(){
-  const q=document.getElementById('q').value;
-  const c=document.getElementById('citySelect').options[document.getElementById('citySelect').selectedIndex].text;
-  if(typeof sendPrompt==='function') sendPrompt(q?`Find elderly care resources for "${q}" in ${c}, India`:`What elderly care NGOs and government schemes are available for seniors in ${c}, India?`);
-}
-
-/* -------- PAGE 2 RENDER -------- */
+/* ===== PAGE 3 LOGIC ===== */
 function homeCardHTML(h){
-  const logoEl = h.logo
-    ? `<div class="hci"><img src="${h.logo}" alt="${h.n}" onerror="this.parentNode.innerHTML='<i class=\\'ti ti-home-heart\\' aria-hidden=\\'true\\'></i>';this.parentNode.className='hci';"></div>`
-    : `<div class="hci"><i class="ti ti-home-heart"></i></div>`;
-  return `<div class="home-card">
-  <div class="home-card-top">
-    ${logoEl}
-    <span class="price-badge ${h.paid?'pb-paid':'pb-free'}">${h.paid?'Paid':'Free'}</span>
+  return`<div class="card">
+  <div class="card-top">
+    <div class="ci ci-home"><i class="ti ti-home-heart"></i></div>
+    <span class="cbadge ${h.paid?'cb-paid':'cb-free'}">${h.paid?'Paid':'Free'}</span>
   </div>
-  <div class="hn">${h.n}</div>
-  <div class="hcity"><i class="ti ti-map-pin" style="font-size:11px"></i>${h.city}</div>
-  <div class="hd">${h.d}</div>
-  ${h.paid&&h.price?`<div style="font-size:calc(11px * 1.15);color:#92400e;font-weight:500;margin-bottom:8px">${h.price}</div>`:''}
-  <div class="hfeat">${h.feat.map(f=>`<span class="feat">${f}</span>`).join('')}</div>
-  <div class="hfoot">
-    <div class="hph"><i class="ti ti-phone" style="font-size:11px"></i><b>${h.p}</b></div>
-    ${h.w?`<a class="hlink" href="${h.w}" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> Visit</a>`:'<span></span>'}
-  </div>
-</div>`;
-}
+  <div class="cn">${h.n}</div>
+  <div class="cc"><i class="ti ti-map-pin" style="font-size:10px"></i> ${h.city}</div>
+  <div class="cd">${h.d}</div>
+  ${h.paid&&h.price?`<div style="font-size:calc(11px * 1.15);color:#92400e;font-weight:600;margin-bottom:8px">${h.price}</div>`:''}
+  <div class="ctags">${h.feat.map(f=>`<span class="tag">${f}</span>`).join('')}</div>
+  <div class="cfoot">
+    <div class="cph"><i class="ti ti-phone" style="font-size:11px"></i><b>${h.p}</b></div>
+    ${h.w?`<a class="clink" href="${h.w}" target="_blank"><i class="ti ti-external-link" style="font-size:11px"></i> Visit</a>`:'<span></span>'}
+  </div></div>`;}
 
 function renderHomes(){
-  const q=(document.getElementById('hq').value||'').toLowerCase();
-  const filter=h=>{
-    const cityOk=homeCity==='all'||h.city===homeCity;
-    const qOk=!q||h.n.toLowerCase().includes(q)||h.city.toLowerCase().includes(q)||h.d.toLowerCase().includes(q)||h.feat.some(f=>f.toLowerCase().includes(q));
-    return cityOk&&qOk;
-  };
+  const filter=h=>homeCity==='all'||h.city===homeCity;
   const free=HOMES.filter(h=>!h.paid&&filter(h));
   const paid=HOMES.filter(h=>h.paid&&filter(h));
   document.getElementById('freeCnt').textContent=free.length;
   document.getElementById('paidCnt').textContent=paid.length;
-  document.getElementById('freeGrid').innerHTML=free.length?free.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 6px"></i>No free homes match your filter.</div>`;
-  document.getElementById('paidGrid').innerHTML=paid.length?paid.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 6px"></i>No paid homes match your filter.</div>`;
+  document.getElementById('freeGrid').innerHTML=free.length?free.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 8px"></i>No free homes for this city.</div>`;
+  document.getElementById('paidGrid').innerHTML=paid.length?paid.map(homeCardHTML).join(''):`<div class="empty"><i class="ti ti-home" style="font-size:20px;display:block;margin:0 auto 8px"></i>No paid homes for this city.</div>`;
 }
 
-/* City chips for page 2 */
-function buildCityChips(){
+function buildHomeCityChips(){
   const cities=['all',...[...new Set(HOMES.map(h=>h.city))].sort()];
-  const container=document.getElementById('homeCityChips');
-  container.innerHTML=cities.map(c=>`<button class="city-chip${c==='all'?' on':''}" onclick="setHomeCity('${c}',this)">${c==='all'?'All Cities':c}</button>`).join('');
+  document.getElementById('homeCityChips').innerHTML=cities.map(c=>`<button class="city-chip${c==='all'?' on':''}" onclick="setHomeCity('${c}',this)">${c==='all'?'All Cities':c}</button>`).join('');
 }
 
 function setHomeCity(c,btn){
   homeCity=c;
-  document.querySelectorAll('.city-chip').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('#homeCityChips .city-chip').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
   renderHomes();
 }
 
-buildCityChips();
-render();
+/* ===== PAGE 4 LOGIC ===== */
+const srcLabel={naukri:'Naukri',linkedin:'LinkedIn',iimjobs:'IIMJobs',govt:'Govt/NGO',timesjobs:'TimesJobs'};
+const srcCls={naukri:'src-naukri',linkedin:'src-linkedin',iimjobs:'src-iimjobs',govt:'src-govt',timesjobs:'src-timesjobs'};
+const srcUrls={
+  naukri:'https://www.naukri.com/senior-citizen-jobs',
+  linkedin:'https://www.linkedin.com/jobs/search/?keywords=retired+professional',
+  iimjobs:'https://www.iimjobs.com/j/senior-management',
+  govt:'https://www.naukri.com/government-jobs',
+  timesjobs:'https://jobs.timesofindia.com/'
+};
+
+function jobHTML(j){
+  return`<div class="job-card">
+  <div class="job-src ${srcCls[j.src]}">${srcLabel[j.src]}</div>
+  <div class="job-title">${j.title}</div>
+  <div class="job-org"><i class="ti ti-building" style="font-size:10px"></i> ${j.org}</div>
+  <div class="job-desc">${j.desc}</div>
+  <div class="job-tags">${j.tags.map(t=>`<span class="job-tag">${t}</span>`).join('')}</div>
+  <div class="job-foot">
+    <div class="job-loc"><i class="ti ti-map-pin" style="font-size:10px"></i> ${j.city}</div>
+    <a class="job-apply" href="${j.url}" target="_blank"><i class="ti ti-external-link"></i> Apply</a>
+  </div></div>`;}
+
+function renderJobs(){
+  const city=document.getElementById('empCitySelect').value;
+  const catV=document.getElementById('empCatSelect').value;
+  const filtered=JOBS.filter(j=>(city==='all'||j.city===city)&&(catV==='all'||j.cat===catV));
+  document.getElementById('jobCnt').textContent=filtered.length;
+  document.getElementById('jobGrid').innerHTML=filtered.length?filtered.map(jobHTML).join(''):`<div class="empty" style="grid-column:1/-1"><i class="ti ti-briefcase" style="font-size:20px;display:block;margin:0 auto 8px"></i>No jobs found for this filter.</div>`;
+}
+
+/* ===== PAGE 5 LOGIC ===== */
+let selectedAmt=1000,selectedPay='upi';
+
+function selectAmt(v,btn){
+  selectedAmt=v;
+  document.querySelectorAll('.amt-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('customAmt').value=v;
+}
+
+function clearAmtSel(){
+  document.querySelectorAll('.amt-btn').forEach(b=>b.classList.remove('sel'));
+  selectedAmt=parseInt(document.getElementById('customAmt').value)||500;
+}
+
+function selPay(v,btn){
+  selectedPay=v;
+  document.querySelectorAll('.pay-method').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+}
+
+function initDonate(){
+  const amt=parseInt(document.getElementById('customAmt').value)||selectedAmt;
+  const name=document.getElementById('donorName').value||'Donor';
+  document.getElementById('modalAmtText').innerHTML=`You are donating <strong>₹${amt.toLocaleString('en-IN')}</strong> to Elderly Care Hub`;
+  // Build UPI deep link (background - not directly visible)
+  const upiId='ruchircapoor-1@okaxis';
+  const upiLink=`upi://pay?pa=${upiId}&pn=ElderlyCarehub&am=${amt}&cu=INR&tn=Donation+for+Elderly+Care+Hub`;
+  if(selectedPay==='upi'&&/Android|iPhone/i.test(navigator.userAgent)){
+    window.location.href=upiLink;
+  }
+  document.getElementById('donateModal').classList.add('open');
+}
+
+/* ===== INIT ===== */
+buildHomeCityChips();
+renderAgencies();
 renderHomes();
+renderJobs();
 </script>
 </body>
 </html>

@@ -1,0 +1,326 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.app{padding:0 0 2rem}
+.hero{background:linear-gradient(135deg,#1D9E75,#0F6E56);border-radius:var(--border-radius-lg);padding:1.5rem;margin-bottom:1.5rem;color:#fff}
+.hero h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.hero p{font-size:14px;opacity:0.85}
+.selectors{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1.5rem}
+.sel-group label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px;display:block;font-weight:500;text-transform:uppercase;letter-spacing:0.04em}
+.sel-group select{width:100%;font-size:15px}
+.search-bar{display:flex;gap:8px;margin-bottom:1.5rem}
+.search-bar input{flex:1;font-size:15px}
+.search-bar button{white-space:nowrap;font-size:14px;padding:0 16px;background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success);border-radius:var(--border-radius-md);cursor:pointer}
+.cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.5rem}
+.cat-btn{font-size:13px;padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-tertiary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer}
+.cat-btn.active{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
+.section-title{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-title .badge{font-size:11px;padding:2px 8px;border-radius:8px;background:var(--color-background-info);color:var(--color-text-info)}
+.section-title .local-badge{background:var(--color-background-warning);color:var(--color-text-warning)}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:0.5rem}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem}
+.card.local{border-left:3px solid #EF9F27}
+.card.national{border-left:3px solid #378ADD}
+.card-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.card-icon{width:38px;height:38px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.card-icon.gov{background:var(--color-background-info);color:var(--color-text-info)}
+.card-icon.ngo{background:var(--color-background-success);color:var(--color-text-success)}
+.card-icon.health{background:var(--color-background-danger);color:var(--color-text-danger)}
+.card-icon.legal{background:var(--color-background-warning);color:var(--color-text-warning)}
+.card-icon.financial{background:var(--color-background-warning);color:var(--color-text-warning)}
+.card-icon.social{background:var(--color-background-info);color:var(--color-text-info)}
+.card-title{font-size:15px;font-weight:500;color:var(--color-text-primary);line-height:1.3}
+.card-type{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.card-desc{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:10px}
+.card-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.tag{font-size:11px;padding:3px 8px;border-radius:10px;background:var(--color-background-secondary);color:var(--color-text-secondary);border:0.5px solid var(--color-border-tertiary)}
+.card-footer{display:flex;align-items:center;justify-content:space-between;border-top:0.5px solid var(--color-border-tertiary);padding-top:10px;margin-top:4px}
+.card-contact{font-size:12px;color:var(--color-text-secondary)}
+.card-contact b{color:var(--color-text-primary);font-weight:500}
+.card-link{font-size:12px;color:var(--color-text-info);text-decoration:none;display:flex;align-items:center;gap:3px}
+.helpline-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-bottom:1.5rem}
+.helpline{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;display:flex;align-items:center;gap:10px}
+.helpline-icon{font-size:20px;color:var(--color-text-success)}
+.helpline-num{font-size:16px;font-weight:500;color:var(--color-text-primary)}
+.helpline-lbl{font-size:12px;color:var(--color-text-secondary)}
+.empty{text-align:center;padding:1.5rem;color:var(--color-text-secondary);font-size:14px;grid-column:1/-1}
+.city-note{font-size:13px;color:var(--color-text-secondary);margin-bottom:1rem;padding:10px 14px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);display:flex;align-items:center;gap:8px}
+</style>
+
+<h2 class="sr-only">Elderly Care Hub India — National and local NGOs, government bodies, and helplines for senior citizens</h2>
+
+<div class="app">
+  <div class="hero">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+      <i class="ti ti-heart-handshake" style="font-size:26px" aria-hidden="true"></i>
+      <h1>Elderly Care Hub — India</h1>
+    </div>
+    <p>Everything under one roof — NGOs, government schemes, helplines &amp; more for senior citizens aged 60–100.</p>
+  </div>
+
+  <div class="selectors">
+    <div class="sel-group">
+      <label>Country</label>
+      <select disabled style="opacity:0.6"><option>India</option></select>
+    </div>
+    <div class="sel-group">
+      <label>City</label>
+      <select id="citySelect" onchange="filterCards()">
+        <option value="all">All Cities</option>
+        <optgroup label="North India">
+          <option value="Delhi">Delhi / NCR</option>
+          <option value="Lucknow">Lucknow</option>
+          <option value="Jaipur">Jaipur</option>
+          <option value="Chandigarh">Chandigarh</option>
+          <option value="Agra">Agra</option>
+          <option value="Varanasi">Varanasi</option>
+        </optgroup>
+        <optgroup label="South India">
+          <option value="Bengaluru">Bengaluru</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Kochi">Kochi</option>
+          <option value="Mysuru">Mysuru</option>
+          <option value="Coimbatore">Coimbatore</option>
+          <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+        </optgroup>
+        <optgroup label="West India">
+          <option value="Mumbai">Mumbai</option>
+          <option value="Pune">Pune</option>
+          <option value="Ahmedabad">Ahmedabad</option>
+          <option value="Surat">Surat</option>
+          <option value="Nagpur">Nagpur</option>
+          <option value="Goa">Goa</option>
+        </optgroup>
+        <optgroup label="East India">
+          <option value="Kolkata">Kolkata</option>
+          <option value="Bhubaneswar">Bhubaneswar</option>
+          <option value="Patna">Patna</option>
+          <option value="Guwahati">Guwahati</option>
+        </optgroup>
+        <optgroup label="Central India">
+          <option value="Bhopal">Bhopal</option>
+          <option value="Indore">Indore</option>
+          <option value="Raipur">Raipur</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="sel-group">
+      <label>Age group</label>
+      <select id="ageSelect">
+        <option value="all" selected>All (60–100)</option>
+        <option value="60-69">60–69</option>
+        <option value="70-79">70–79</option>
+        <option value="80-89">80–89</option>
+        <option value="90-100">90–100</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search by need — 'pension', 'dementia', 'legal aid'..." oninput="filterCards()">
+    <button onclick="aiSearch()"><i class="ti ti-sparkles" aria-hidden="true"></i> Ask AI ↗</button>
+  </div>
+
+  <div class="cats">
+    <button class="cat-btn active" onclick="setCategory('all',this)">All</button>
+    <button class="cat-btn" onclick="setCategory('gov',this)"><i class="ti ti-building-bank" aria-hidden="true"></i> Government</button>
+    <button class="cat-btn" onclick="setCategory('ngo',this)"><i class="ti ti-heart" aria-hidden="true"></i> NGOs</button>
+    <button class="cat-btn" onclick="setCategory('health',this)"><i class="ti ti-stethoscope" aria-hidden="true"></i> Health</button>
+    <button class="cat-btn" onclick="setCategory('legal',this)"><i class="ti ti-scale" aria-hidden="true"></i> Legal Aid</button>
+    <button class="cat-btn" onclick="setCategory('financial',this)"><i class="ti ti-coin" aria-hidden="true"></i> Financial</button>
+    <button class="cat-btn" onclick="setCategory('social',this)"><i class="ti ti-users" aria-hidden="true"></i> Social</button>
+  </div>
+
+  <div class="section-title"><i class="ti ti-phone" aria-hidden="true"></i> Emergency helplines</div>
+  <div class="helpline-row">
+    <div class="helpline"><i class="ti ti-phone-call helpline-icon" aria-hidden="true"></i><div><div class="helpline-num">14567</div><div class="helpline-lbl">Elder Helpline (ELDER)</div></div></div>
+    <div class="helpline"><i class="ti ti-heart helpline-icon" aria-hidden="true"></i><div><div class="helpline-num">1800-180-1253</div><div class="helpline-lbl">Agewell Helpline</div></div></div>
+    <div class="helpline"><i class="ti ti-stethoscope helpline-icon" aria-hidden="true"></i><div><div class="helpline-num">1800-111-555</div><div class="helpline-lbl">Health Min. Helpline</div></div></div>
+    <div class="helpline"><i class="ti ti-alert-triangle helpline-icon" aria-hidden="true"></i><div><div class="helpline-num">112</div><div class="helpline-lbl">Emergency Services</div></div></div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-title">
+    <i class="ti ti-globe" aria-hidden="true"></i> National agencies
+    <span class="badge" id="natCount">0</span>
+  </div>
+  <div class="cards" id="natCards"></div>
+
+  <hr class="divider">
+
+  <div class="section-title">
+    <i class="ti ti-map-pin" aria-hidden="true"></i> Local agencies
+    <span class="badge local-badge" id="locCount">0</span>
+    <span id="cityLabel" style="font-size:13px;font-weight:400;color:var(--color-text-secondary)"></span>
+  </div>
+  <div id="cityNote" class="city-note" style="display:none">
+    <i class="ti ti-info-circle" aria-hidden="true"></i>
+    <span id="cityNoteText"></span>
+  </div>
+  <div class="cards" id="locCards"></div>
+</div>
+
+<script>
+const resources = [
+  // NATIONAL
+  {name:'Ministry of Social Justice & Empowerment',scope:'national',cats:['gov','financial'],desc:'Nodal ministry for senior citizen welfare including IGNOAPS pension scheme, maintenance tribunals, and policy.',phone:'011-23381366',web:'https://socialjustice.gov.in',tags:['Pension','Policy','National']},
+  {name:'National Programme for Health Care of Elderly (NPHCE)',scope:'national',cats:['gov','health'],desc:'Dedicated healthcare at district and sub-district levels including geriatric OPDs and free medicines for elderly.',phone:'1800-111-555',web:'https://nhm.gov.in',tags:['Healthcare','Free','National']},
+  {name:'HelpAge India',scope:'national',cats:['ngo','health','social'],desc:'India\'s leading NGO for disadvantaged elderly — mobile healthcare units, elder abuse helpline, and livelihood support.',phone:'1800-180-1253',web:'https://www.helpageindia.org',tags:['NGO','Healthcare','Abuse']},
+  {name:'Agewell Foundation',scope:'national',cats:['ngo','social','legal'],desc:'Advocates for elderly rights; operates national helpline and social awareness programmes across India.',phone:'14567',web:'https://www.agewellfoundation.org',tags:['Rights','Helpline','National']},
+  {name:'Senior Citizens Welfare Fund',scope:'national',cats:['gov','financial'],desc:'Government fund channelling grants to NGOs and direct welfare schemes for senior citizens via Ministry of Finance.',phone:'011-23092868',web:'https://dea.gov.in',tags:['Financial Aid','Fund','National']},
+  {name:'PM Vaya Vandana Yojana (PMVVY)',scope:'national',cats:['gov','financial'],desc:'LIC pension scheme for citizens 60+ providing guaranteed monthly pension and assured returns on investment.',phone:'1800-227-717',web:'https://licindia.in',tags:['Pension','LIC','60+']},
+  {name:'Legal Services Authorities — Senior Cell (NALSA)',scope:'national',cats:['legal','gov'],desc:'Free legal aid for senior citizens under the Legal Services Authorities Act. Lok Adalats handle maintenance cases.',phone:'15100',web:'https://nalsa.gov.in',tags:['Free Legal Aid','Maintenance','National']},
+  {name:'ARDSI — Alzheimer\'s & Related Disorders Society',scope:'national',cats:['ngo','health'],desc:'National body for dementia awareness, research, and caregiver support. Chapter network across major cities.',phone:'0484-2336479',web:'https://www.ardsi.org',tags:['Dementia','Caregivers','National']},
+  {name:'Maintenance & Welfare of Parents & Senior Citizens Act',scope:'national',cats:['legal','gov'],desc:'Legal framework ensuring children maintain parents. Senior Citizens Tribunals in every district for complaints.',phone:'14567',web:'https://socialjustice.gov.in',tags:['Legal','Rights','Tribunal']},
+  {name:'Rashtriya Vayoshri Yojana (RVY)',scope:'national',cats:['gov','health'],desc:'Scheme providing assistive devices (wheelchairs, hearing aids, spectacles) free to BPL senior citizens via camps.',phone:'1800-180-1253',web:'https://socialjustice.gov.in',tags:['Assistive Devices','BPL','Free']},
+
+  // LOCAL — Delhi
+  {name:'Delhi Social Welfare Dept. — Senior Cell',scope:'local',city:'Delhi',cats:['gov','social','financial'],desc:'Delhi government\'s nodal body for old age pension, senior citizen cards, and welfare scheme enrolment.',phone:'011-23392900',web:'https://socialjustice.delhi.gov.in',tags:['Delhi','Pension','Welfare']},
+  {name:'Samvedna Senior Care',scope:'local',city:'Delhi',cats:['ngo','health','social'],desc:'Delhi NCR-based organisation providing mental health counselling, dementia care, and social engagement for elderly.',phone:'0124-4229659',web:'https://www.samvednacare.com',tags:['Delhi','Mental Health','Dementia']},
+  {name:'ARDSI Delhi Chapter',scope:'local',city:'Delhi',cats:['ngo','health'],desc:'Delhi chapter supporting families affected by Alzheimer\'s and dementia with counselling and caregiver training.',phone:'011-26588911',web:'https://ardsi.org',tags:['Delhi','Dementia','Support']},
+
+  // LOCAL — Bengaluru
+  {name:'Karnataka Dept. of Social Security & Pensions',scope:'local',city:'Bengaluru',cats:['gov','social','financial'],desc:'Administers Sandhya Suraksha Yojana pension and senior citizen welfare schemes for Karnataka residents.',phone:'080-22251990',web:'https://dsswdkarnataka.gov.in',tags:['Bengaluru','Pension','Karnataka']},
+  {name:'Nightingales Medical Trust',scope:'local',city:'Bengaluru',cats:['ngo','health'],desc:'Dementia care, memory clinics, caregiver training, and day care services for elderly in Bengaluru.',phone:'080-25492411',web:'https://www.nightingalestrust.net',tags:['Bengaluru','Dementia','Memory Care']},
+  {name:'Seva Sadan — Bengaluru',scope:'local',city:'Bengaluru',cats:['ngo','social'],desc:'Runs old age homes, day care centres, and community outreach for destitute and lonely elderly in Bengaluru.',phone:'080-22203037',web:'https://sevasadan.org',tags:['Bengaluru','Old Age Home','Day Care']},
+
+  // LOCAL — Mumbai
+  {name:'Dignity Foundation',scope:'local',city:'Mumbai',cats:['ngo','social','health'],desc:'Recreation centres, health camps, counselling, and vocational training for senior citizens in Mumbai.',phone:'022-23630869',web:'https://www.dignityfoundation.com',tags:['Mumbai','Recreation','Counselling']},
+  {name:'Agewell Mumbai Chapter',scope:'local',city:'Mumbai',cats:['ngo','social'],desc:'Mumbai network of trained volunteers providing doorstep assistance and social support to elderly in need.',phone:'022-24926226',web:'https://agewellfoundation.org',tags:['Mumbai','Volunteers','Doorstep']},
+  {name:'Maharashtra State Social Welfare Dept.',scope:'local',city:'Mumbai',cats:['gov','financial','social'],desc:'Maharashtra\'s Shravanbal Seva Rajya Yojana pension and welfare schemes for senior citizens.',phone:'022-22025251',web:'https://sjsa.maharashtra.gov.in',tags:['Mumbai','Pension','Maharashtra']},
+
+  // LOCAL — Chennai
+  {name:'Tamil Nadu Dept. of Social Defence',scope:'local',city:'Chennai',cats:['gov','social','financial'],desc:'Administers TN Chief Minister\'s Uzhavar Pension Scheme and runs government-run old age homes in Tamil Nadu.',phone:'044-24357432',web:'https://socialjustice.tn.gov.in',tags:['Chennai','Pension','TN']},
+  {name:'Chennai Aged Persons\' Welfare Association',scope:'local',city:'Chennai',cats:['ngo','social'],desc:'Day-care centres, home visits, and awareness programmes on government welfare schemes for Chennai elderly.',phone:'044-24612345',web:'https://capwa.org',tags:['Chennai','Day Care','Home Visit']},
+  {name:'Coimbatore Senior Citizens Forum',scope:'local',city:'Coimbatore',cats:['ngo','social'],desc:'Forum organising health camps, legal awareness and social activities for senior citizens in Coimbatore.',phone:'0422-2391234',web:'https://cbescf.org',tags:['Coimbatore','Health Camps','Legal']},
+
+  // LOCAL — Hyderabad
+  {name:'Hyderabad Dist. Senior Citizens Welfare Assoc.',scope:'local',city:'Hyderabad',cats:['ngo','social','legal'],desc:'Legal awareness, social support, and recreation activities for senior citizens across Hyderabad district.',phone:'040-23226284',web:'https://hyderabadseniors.org',tags:['Hyderabad','Legal','Social']},
+  {name:'Telangana Dept. of Women, Children & Differently Abled',scope:'local',city:'Hyderabad',cats:['gov','financial'],desc:'Administers Aasara Pension Scheme for elderly in Telangana including direct benefit transfers.',phone:'040-23390228',web:'https://wdcw.telangana.gov.in',tags:['Hyderabad','Pension','Aasara']},
+
+  // LOCAL — Kolkata
+  {name:'Pranam NGO — Kolkata',scope:'local',city:'Kolkata',cats:['ngo','social','health'],desc:'Provides shelter, healthcare, and rehabilitation for abandoned and destitute elderly in Kolkata.',phone:'033-24190550',web:'https://pranam.org.in',tags:['Kolkata','Shelter','Rehabilitation']},
+  {name:'West Bengal Dept. of Social Welfare',scope:'local',city:'Kolkata',cats:['gov','financial'],desc:'Administers old age pension and welfare schemes for senior citizens in West Bengal including home care.',phone:'033-22145550',web:'https://wbsocialwelfare.gov.in',tags:['Kolkata','Pension','WB']},
+
+  // LOCAL — Pune
+  {name:'Silver Innings Foundation',scope:'local',city:'Pune',cats:['ngo','social'],desc:'Connects Pune seniors with volunteering, social activities, and wellness programmes to prevent isolation.',phone:'020-65101435',web:'https://www.silverinnings.com',tags:['Pune','Volunteering','Wellness']},
+  {name:'Pune Senior Citizens Association',scope:'local',city:'Pune',cats:['ngo','legal','social'],desc:'Advocates for seniors\' rights in Pune; provides legal guidance on maintenance, pension, and property matters.',phone:'020-25672345',web:'https://puneseniors.org',tags:['Pune','Legal','Rights']},
+
+  // LOCAL — Ahmedabad
+  {name:'Gujarat Social Welfare Dept. — Senior Cell',scope:'local',city:'Ahmedabad',cats:['gov','financial'],desc:'Implements Vayoshri Yojana and old age pension for Gujarat senior citizens. District offices across the state.',phone:'079-23251601',web:'https://sje.gujarat.gov.in',tags:['Ahmedabad','Pension','Gujarat']},
+  {name:'HelpAge India — Gujarat Chapter',scope:'local',city:'Ahmedabad',cats:['ngo','health'],desc:'Mobile health units and elder care camps serving elderly in Ahmedabad and surrounding districts.',phone:'079-26744050',web:'https://helpageindia.org',tags:['Ahmedabad','Mobile Health','Camps']},
+
+  // LOCAL — Kochi
+  {name:'Kerala Social Security Mission',scope:'local',city:'Kochi',cats:['gov','health','social'],desc:'Palliative care, home visits, and social support for homebound elderly across Kerala through panchayat network.',phone:'0471-2317030',web:'https://socialsecuritymission.gov.in',tags:['Kochi','Kerala','Palliative Care']},
+  {name:'ARDSI Kerala Chapter',scope:'local',city:'Kochi',cats:['ngo','health'],desc:'Kerala\'s leading dementia care network with memory clinics, day care and caregiver support in Kochi.',phone:'0484-2336479',web:'https://ardsi.org',tags:['Kochi','Dementia','Memory Clinic']},
+  {name:'Thiruvananthapuram Senior Citizens Forum',scope:'local',city:'Thiruvananthapuram',cats:['ngo','social'],desc:'Forum for seniors in the capital city providing peer support, health awareness, and recreational activities.',phone:'0471-2328456',web:'https://tscforum.org',tags:['Thiruvananthapuram','Social','Health']},
+
+  // LOCAL — Lucknow
+  {name:'UP Dept. of Social Welfare — Senior Cell',scope:'local',city:'Lucknow',cats:['gov','financial'],desc:'Implements Old Age Pension and senior citizen welfare schemes for Uttar Pradesh residents.',phone:'0522-2236765',web:'https://swd.up.gov.in',tags:['Lucknow','UP','Pension']},
+  {name:'HelpAge India — Lucknow',scope:'local',city:'Lucknow',cats:['ngo','health'],desc:'Mobile health units and awareness drives for elderly in Lucknow and surrounding Uttar Pradesh districts.',phone:'0522-2231234',web:'https://helpageindia.org',tags:['Lucknow','Mobile Health','NGO']},
+
+  // LOCAL — Jaipur
+  {name:'Rajasthan Social Justice & Empowerment Dept.',scope:'local',city:'Jaipur',cats:['gov','financial'],desc:'Rajasthan state pension, free travel pass, and welfare schemes for senior citizens administered district-wise.',phone:'0141-2220200',web:'https://sje.rajasthan.gov.in',tags:['Jaipur','Rajasthan','Pension']},
+
+  // LOCAL — Bhopal / Indore
+  {name:'MP Dept. of Social Justice — Senior Cell',scope:'local',city:'Bhopal',cats:['gov','financial'],desc:'Madhya Pradesh old age pension and Indira Gandhi National Old Age Pension Scheme implementation.',phone:'0755-2550916',web:'https://socialjustice.mp.gov.in',tags:['Bhopal','MP','Pension']},
+  {name:'Indore Senior Citizens Council',scope:'local',city:'Indore',cats:['ngo','social','legal'],desc:'Advocacy and support body for senior citizens in Indore providing legal aid, social activities, and health camps.',phone:'0731-2496001',web:'https://indoreseniors.org',tags:['Indore','Legal','Social']},
+
+  // LOCAL — Guwahati
+  {name:'Assam Social Welfare Dept. — Senior Cell',scope:'local',city:'Guwahati',cats:['gov','financial'],desc:'Administers old age pension and senior citizen welfare in Assam. District offices across the state.',phone:'0361-2237553',web:'https://socialwelfare.assam.gov.in',tags:['Guwahati','Assam','Pension']},
+
+  // LOCAL — Bhubaneswar
+  {name:'Odisha Dept. of Social Security — Senior Cell',scope:'local',city:'Bhubaneswar',cats:['gov','financial'],desc:'Implements Madhu Babu Pension Yojana for elderly BPL citizens in Odisha.',phone:'0674-2395988',web:'https://ssepd.odisha.gov.in',tags:['Bhubaneswar','Odisha','Pension']},
+
+  // LOCAL — Goa
+  {name:'Goa Dept. of Social Welfare',scope:'local',city:'Goa',cats:['gov','financial','social'],desc:'Dayanand Social Security Scheme pension and welfare for senior citizens residing in Goa.',phone:'0832-2224962',web:'https://socialwelfare.goa.gov.in',tags:['Goa','Pension','DSSS']},
+
+  // LOCAL — Chandigarh
+  {name:'Chandigarh Social Welfare Dept. — Senior Cell',scope:'local',city:'Chandigarh',cats:['gov','financial'],desc:'Old age pension and social security for senior citizens in the Union Territory of Chandigarh.',phone:'0172-2703296',web:'https://chdsw.gov.in',tags:['Chandigarh','Pension','UT']},
+];
+
+const iconMap={gov:'ti-building-bank',ngo:'ti-heart',health:'ti-stethoscope',legal:'ti-scale',financial:'ti-coin',social:'ti-users'};
+let currentCat='all';
+
+function setCategory(cat,btn){
+  currentCat=cat;
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards();
+}
+
+function cardHTML(r){
+  return `<div class="card ${r.scope}">
+    <div class="card-header">
+      <div class="card-icon ${r.cats[0]}"><i class="ti ${iconMap[r.cats[0]]||'ti-star'}" aria-hidden="true"></i></div>
+      <div>
+        <div class="card-title">${r.name}</div>
+        <div class="card-type">${r.cats.map(c=>c.charAt(0).toUpperCase()+c.slice(1)).join(' · ')}</div>
+      </div>
+    </div>
+    <div class="card-desc">${r.desc}</div>
+    <div class="card-tags">${r.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <div class="card-footer">
+      <div class="card-contact"><i class="ti ti-phone" style="font-size:13px;vertical-align:-1px" aria-hidden="true"></i> <b>${r.phone}</b></div>
+      <a class="card-link" href="${r.web}" target="_blank"><i class="ti ti-external-link" style="font-size:13px" aria-hidden="true"></i> Visit</a>
+    </div>
+  </div>`;
+}
+
+function filterCards(){
+  const cityEl=document.getElementById('citySelect');
+  const city=cityEl.value;
+  const cityName=cityEl.options[cityEl.selectedIndex].text;
+  const search=document.getElementById('searchInput').value.toLowerCase();
+
+  const match=r=>{
+    const catMatch=currentCat==='all'||r.cats.includes(currentCat);
+    const searchMatch=!search||r.name.toLowerCase().includes(search)||r.desc.toLowerCase().includes(search)||r.tags.some(t=>t.toLowerCase().includes(search));
+    return catMatch&&searchMatch;
+  };
+
+  const natItems=resources.filter(r=>r.scope==='national'&&match(r));
+  const locItems=resources.filter(r=>r.scope==='local'&&(city==='all'||r.city===city)&&match(r));
+
+  document.getElementById('natCount').textContent=natItems.length;
+  document.getElementById('locCount').textContent=locItems.length;
+
+  document.getElementById('natCards').innerHTML=natItems.length
+    ?natItems.map(cardHTML).join('')
+    :`<div class="empty"><i class="ti ti-search" style="font-size:24px;display:block;margin:0 auto 6px" aria-hidden="true"></i>No national agencies match this filter.</div>`;
+
+  const cityLabel=document.getElementById('cityLabel');
+  const cityNote=document.getElementById('cityNote');
+  const cityNoteText=document.getElementById('cityNoteText');
+
+  if(city==='all'){
+    cityLabel.textContent='— select a city to see local agencies';
+    cityNote.style.display='none';
+    document.getElementById('locCards').innerHTML=locItems.length
+      ?locItems.map(cardHTML).join('')
+      :`<div class="empty" style="padding:1rem"><i class="ti ti-map-pin" style="font-size:22px;display:block;margin:0 auto 6px" aria-hidden="true"></i>Select a city above to see local agencies.</div>`;
+  } else {
+    cityLabel.textContent=`— ${cityName}`;
+    if(locItems.length===0){
+      cityNote.style.display='flex';
+      cityNoteText.textContent=`No local agencies listed for ${cityName} yet. National agencies above serve all cities.`;
+      document.getElementById('locCards').innerHTML='';
+    } else {
+      cityNote.style.display='none';
+      document.getElementById('locCards').innerHTML=locItems.map(cardHTML).join('');
+    }
+  }
+}
+
+function aiSearch(){
+  const q=document.getElementById('searchInput').value;
+  const cityEl=document.getElementById('citySelect');
+  const city=cityEl.options[cityEl.selectedIndex].text;
+  sendPrompt(q?`Find elderly care resources for "${q}" in ${city}, India`:`What elderly care NGOs and government schemes are available for seniors in ${city}, India?`);
+}
+
+filterCards();
+</script>
